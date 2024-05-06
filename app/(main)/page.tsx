@@ -1,20 +1,25 @@
-import { getServerSession } from 'next-auth'
-import React from 'react'
-import { redirect } from 'next/navigation'
-import { authOptions } from '../api/auth/[...nextauth]/route'
-import Home from '@/components/Home'
+import { createNewChat } from "@/lib/chat"
+import { currentUser } from "@/lib/current-user"
+import prisma from "@/lib/prisma"
+import { redirect } from "next/navigation"
 
 const page = async () => {
-  const session = await getServerSession(authOptions)
-  if(!session){
-    return redirect('/login')
+  const user = await currentUser()
+  const chats = await prisma.chat.findMany({
+    where: {
+      userId: user?.id
+    },
+    orderBy: {
+      createdAt: 'desc'
+    }
+  })
+
+  console.log(chats)
+  if(chats.length === 0){
+    console.log('creating new chat')
+    await createNewChat()
   }
-  return (
-    <div>
-      chat
-      <Home />
-    </div>
-  )
+  return redirect(`/${chats[0]?.id}`)
 }
 
 export default page

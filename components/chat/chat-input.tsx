@@ -6,12 +6,21 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem } from '../ui/form'
 import { Send } from 'lucide-react'
-
+import { Chat, Message } from '@prisma/client'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
 const FormSchema = z.object({
   prompt: z.string().min(1)
 })
 
-const ChatInput = () => {
+interface ChatInputProps {
+  chat: Chat & {
+    messages: Message[]
+  }
+}
+
+const ChatInput = ({chat}: ChatInputProps) => {
+  const router = useRouter()
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -21,7 +30,9 @@ const ChatInput = () => {
   const isLoading = form.formState.isSubmitting
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
-      console.log(values)
+      const response = await axios.post('/api/chat', {chatId: chat.id, prompt: values.prompt})
+      console.log(response)  
+      router.refresh()
     } catch (error) {
       console.log(error)
     }

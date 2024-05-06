@@ -1,9 +1,18 @@
+import { Chat, Message } from '@prisma/client'
 import React from 'react'
 
-const ChatContent = () => {
+interface ChatContentProps {
+  chat: Chat & {
+    messages: Message[]
+  }
+}
+
+const ChatContent = ({chat}: ChatContentProps) => {
   return (
     <div className='flex flex-1 overflow-y-auto h-full'>
-      ChatContent
+      <pre>
+        {JSON.stringify(chat.messages, null, 2)}
+      </pre>
     </div>
   )
 }

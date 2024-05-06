@@ -6,8 +6,7 @@ export const createNewChat = async () => {
   const chat = await prisma.chat.create({
     data: {
       userId: user?.id as string,
-      name: 'New Chat',
-      messages: []
+      name: 'New Chat'
     }
   })
   return chat

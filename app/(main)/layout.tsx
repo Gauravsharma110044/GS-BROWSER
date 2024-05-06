@@ -7,7 +7,6 @@ export default async function ChatLayout({children}: {children: React.ReactNode}
   if(!user){
     return redirect('/login')
   }
-    
   return (
     <div className="h-full">
       <aside className="hidden md:flex h-full w-72 z-30 flex-col fixed inset-y-0">

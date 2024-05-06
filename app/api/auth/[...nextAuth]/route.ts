@@ -41,6 +41,19 @@ export const authOptions:AuthOptions = {
     session: {
         strategy: 'jwt'
     },
+    callbacks: {
+        jwt({ token, account, user }) {
+          if (account) {
+            token.accessToken = account.access_token
+            token.id = user?.id
+          }
+          return token
+        },
+        session({ session, token }) {
+            session.user.id = token.id;
+            return session;
+          },
+      }
 }
 
 const handler = nextAuth(authOptions)

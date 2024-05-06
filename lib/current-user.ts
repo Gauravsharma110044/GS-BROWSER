@@ -13,6 +13,5 @@ export const currentUser = async () => {
       id: session.user?.id
     }
   })
-  console.log(user)
   return user
 }

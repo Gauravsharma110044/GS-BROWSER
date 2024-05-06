@@ -1,5 +1,6 @@
 import { Chat, Message } from '@prisma/client'
 import React from 'react'
+import { ScrollArea } from '../ui/scroll-area'
 
 interface ChatContentProps {
   chat: Chat & {
@@ -9,10 +10,17 @@ interface ChatContentProps {
 
 const ChatContent = ({chat}: ChatContentProps) => {
   return (
-    <div className='flex flex-1 overflow-y-auto h-full'>
-      <pre>
+    <div className='flex flex-1 overflow-y-auto'>
+      {/* <pre>
         {JSON.stringify(chat.messages, null, 2)}
-      </pre>
+      </pre> */}
+      <ScrollArea>
+        {chat.messages.map((message, idx) => {
+          return(
+            <div>{message.content}</div>
+          )
+        })}
+      </ScrollArea>
     </div>
   )
 }

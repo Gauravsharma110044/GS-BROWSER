@@ -24,14 +24,12 @@ const page = async ({params}: {params: {chatId: string}}) => {
     return redirect('/')
   }
   return (
-    <div className='h-full flex flex-col'>
+    <div className='flex flex-col h-full'>
       <ChatHeader />
-      <div className='flex h-full flex-col container md:px-[12rem]'>
-        <div className='flex flex-1 h-full'>
-          <ChatContent chat={chat} />
-        </div>
-        <ChatInput chat={chat} />
+      <div className='flex flex-1 overflow-y-auto'>
+        <ChatContent chat={chat} />
       </div>
+      <ChatInput chat={chat} />
     </div>
   )
 }

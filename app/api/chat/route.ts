@@ -46,7 +46,6 @@ export async function POST(req: Request){
     
     const result = await MODEL.sendMessage(prompt);
     const reply = result.response.text()
-    
     const chat = await prisma.chat.update({
       where: {
         id: chatId as string,

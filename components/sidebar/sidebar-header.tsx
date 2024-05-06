@@ -1,7 +1,7 @@
 import { Edit, Search } from "lucide-react"
-import { Button } from "../ui/button"
 import Image from "next/image"
 import logoSvg from '@/public/logo.svg'
+import { createNewChat } from "@/lib/chat"
 
 const SideBarHeader = () => {
   return (

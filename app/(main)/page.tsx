@@ -9,7 +9,6 @@ const page = async () => {
   if(!session){
     return redirect('/login')
   }
-  console.log(session)
   return (
     <div>
       chat

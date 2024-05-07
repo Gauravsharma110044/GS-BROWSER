@@ -1,10 +1,18 @@
 import React from 'react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Menu } from 'lucide-react'
+import { Chat, User } from '@prisma/client'
+import MobileSidebar from '../mobile-sidebar'
 
-const ChatHeader = () => {
+interface ChatHeaderProps {
+  chats: Chat[]
+  user: User
+}
+
+const ChatHeader = ({chats, user}: ChatHeaderProps) => {
   return (
     <div className='font-semibold px-3 py-2 flex items-center h-14 border-neutral-200 dark:border-neutral-800 border-b-2'>
+      <MobileSidebar chats={chats} user={user} />
       <div>
         <DropdownMenu>
           <DropdownMenuTrigger className="focus:outline-none" asChild>

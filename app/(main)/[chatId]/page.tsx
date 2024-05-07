@@ -13,6 +13,11 @@ const page = async ({params}: {params: {chatId: string}}) => {
   if(!user){
     return redirect('/login')
   }
+  const chats = await prisma.chat.findMany({
+    where: {
+      userId: user.id
+    }
+  })
   const chat = await prisma.chat.findUnique({
     where: {
       id: params.chatId,
@@ -27,7 +32,7 @@ const page = async ({params}: {params: {chatId: string}}) => {
   }
   return (
     <div className='flex flex-col h-full'>
-      <ChatHeader />
+      <ChatHeader chats={chats} user={user} />
       <div className='flex flex-1 overflow-y-auto container md:px-[14rem]'>
         <ChatContent chat={chat} />
       </div>

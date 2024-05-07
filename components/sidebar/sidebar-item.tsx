@@ -1,11 +1,14 @@
+"use client"
 import { Chat } from '@prisma/client'
 import { Archive, MoreHorizontal, Pencil, Share, Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
+import { useModal } from '@/hooks/use-modal-store'
 
 const SideBarItem = ({chat}: {chat: Chat}) => {
   const router = useRouter()
+  const {onOpen} = useModal()
   return (
     <button key={chat.id} onClick={() => router.push(`/${chat.id}`)} className='group p-2 rounded-md flex items-center gap-x-3 w-full hover:bg-zinc-700/30 transition'>
       <p className='text-sm'>{chat.name}</p>
@@ -21,7 +24,7 @@ const SideBarItem = ({chat}: {chat: Chat}) => {
             <DropdownMenuItem className='px-3 p-2 text-sm cursor-pointer'>
               <Pencil className='flex-shrink-0 w-5 h-5 text-zinc-500 dark:text-zinc-400 mr-2'/> Rename
             </DropdownMenuItem>
-            <DropdownMenuItem className='px-3 p-2 text-sm cursor-pointer'>
+            <DropdownMenuItem onClick={() => onOpen('deleteChat', {chat})} className='px-3 p-2 text-sm cursor-pointer'>
               <Trash className='flex-shrink-0 w-5 h-5 text-zinc-500 dark:text-zinc-400 mr-2'/> Delete chat
             </DropdownMenuItem>
           </DropdownMenuContent>

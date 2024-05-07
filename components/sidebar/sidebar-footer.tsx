@@ -4,14 +4,15 @@ import { User } from '@prisma/client'
 import { Book, LogOut, Settings, Sparkle } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { signOut } from 'next-auth/react'
+import { useModal } from '@/hooks/use-modal-store'
 
 const SideBarFooter = ({user}: {user: User}) => {
-  console.log(user)
+  const {onOpen} = useModal()
   return (
     <div className='space-y-2'>
       <button className='group p-2 rounded-md flex items-center gap-x-3 w-full hover:bg-zinc-700/30 transition'>
         <Sparkle />
-        <div className='flex flex-col items-start'>
+        <div onClick={() => onOpen('deleteChat')} className='flex flex-col items-start'>
           <p className='text-sm font-semibold'>Upgrade plan</p>
           <span className='text-xs text-gray-400'>Get GPT-4, DALL-E, and more</span>
         </div>

@@ -71,7 +71,7 @@ model Chat {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   userId    String    @map("user_id") @db.ObjectId
-  user      User      @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   messages  Message[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -87,5 +87,5 @@ model Message {
   role    Role   @default(USER)
   content String @db.String
   chatId  String @db.ObjectId
-  chat    Chat   @relation(fields: [chatId], references: [id])
+  chat    Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
 }

@@ -18,7 +18,6 @@ const SideBar = async () => {
       userId: user.id
     }
   })
-  console.log(chats)
   return (
     <div className='relative flex flex-col px-3 py-3 h-full text-primary w-full dark:bg-[#171717] bg-[#f2f3f5]'>
       <SideBarHeader />

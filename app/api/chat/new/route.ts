@@ -5,7 +5,6 @@ import { NextResponse } from "next/server"
 export async function POST(req: Request){
   try {
     const user = await currentUser()
-    console.log('user', user)
     if(!user){
       return new NextResponse('Unauthorized', {status: 401})
     }
@@ -19,7 +18,6 @@ export async function POST(req: Request){
     if(!chat){
       return new NextResponse('Failed to create new chat', {status: 400})
     }
-    console.log('chat', chat)
     return NextResponse.json(chat)
   } catch (error) {
     console.log(error)

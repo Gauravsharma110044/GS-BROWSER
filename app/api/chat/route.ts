@@ -21,10 +21,8 @@ export async function POST(req: Request){
     if(!user){
       return new NextResponse('Unauthorized', {status: 401})
     }
-    // console.log(user)
 
     const {chatId, prompt} = await req.json()
-    // console.log(chatId, prompt)
     const existingChat = await prisma.chat.findUnique({
       where: {
         id: chatId,
@@ -51,7 +49,6 @@ export async function POST(req: Request){
     
     const result = await MODEL.sendMessage(prompt);
     const reply = result.response.text()
-    console.log('reply', reply)
     const chat = await prisma.chat.update({
       where: {
         id: chatId as string,
@@ -76,7 +73,6 @@ export async function POST(req: Request){
     })
     return NextResponse.json(chat)
   } catch (error) {
-    console.log(error)
     return NextResponse.json({message: 'Error fetching chats'}, {status: 500})
   }
 }

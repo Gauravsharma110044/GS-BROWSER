@@ -13,14 +13,13 @@ export const DeleteChatModal = () => {
   const isModalOpen = isOpen && type === 'deleteChat'
   const [isLoading, setIsLoading] = useState(false)
   const {chat} = data
-  console.log('object')
   const onDelete = async () => {
     try {
       setIsLoading(true)
       await axios.delete(`/api/chat/${chat?.id}`)
       onClose()
-      router.refresh()
       router.push('/')
+      router.refresh()
     } catch (error) {
       console.log(error)
     } finally {

@@ -55,7 +55,6 @@ const page = () => {
     });
 
     if (response.ok) {
-      console.log('register sucessfully')
       router.push("/login");
       router.refresh()
     } else {

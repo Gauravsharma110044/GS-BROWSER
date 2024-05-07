@@ -3,7 +3,6 @@ import { NextResponse } from "next/server"
 
 export async function POST(req: Request){
     try {
-        console.log('register Request')
         const {name, email, password} = await req.json()
         const user = await prisma.user.create({
             data: {

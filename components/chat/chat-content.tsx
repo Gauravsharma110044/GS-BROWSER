@@ -10,17 +10,14 @@ interface ChatContentProps {
 
 const ChatContent = ({chat}: ChatContentProps) => {
   return (
-    <div className='flex flex-1 overflow-y-auto'>
-      {/* <pre>
-        {JSON.stringify(chat.messages, null, 2)}
-      </pre> */}
-      <ScrollArea>
+    <div className='flex flex-1 flex-col py-4 overflow-y-auto'>
+      <div className='flex flex-col-reverse mt-auto'>
         {chat.messages.map((message, idx) => {
           return(
-            <div>{message.content}</div>
+            <div key={idx}>{message.content}</div>
           )
         })}
-      </ScrollArea>
+      </div>
     </div>
   )
 }

@@ -4,14 +4,15 @@ import SideBarHeader from './sidebar-header'
 import { ScrollArea } from '../ui/scroll-area'
 import { Button } from '../ui/button'
 import SideBarFooter from './sidebar-footer'
-import { Chat } from '@prisma/client'
+import { Chat, User } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 
 interface SideBarProps {
   chats: Chat[]
+  user: User
 }
 
-const SideBar = ({chats}: SideBarProps) => {
+const SideBar = ({chats, user}: SideBarProps) => {
   const router = useRouter()
   return (
     <div className='relative flex flex-col px-3 py-3 h-full text-primary w-full dark:bg-[#171717] bg-[#f2f3f5]'>
@@ -23,7 +24,7 @@ const SideBar = ({chats}: SideBarProps) => {
         })}
       </ScrollArea>
 
-      <SideBarFooter />
+      <SideBarFooter user={user} />
     </div>
   )
 }

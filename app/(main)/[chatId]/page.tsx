@@ -26,7 +26,7 @@ const page = async ({params}: {params: {chatId: string}}) => {
   return (
     <div className='flex flex-col h-full'>
       <ChatHeader />
-      <div className='flex flex-1 overflow-y-auto'>
+      <div className='flex flex-1 overflow-y-auto container'>
         <ChatContent chat={chat} />
       </div>
       <ChatInput chat={chat} />

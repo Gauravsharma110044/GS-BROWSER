@@ -18,7 +18,7 @@ const MobileSidebar = ({chats, user}: MobileSidebarProps) => {
         </button>
       </SheetTrigger>
       <SheetContent side='left' className='p-0 flex gap-0 border-0'>
-        <SideBar chats={chats} user={user} />
+        <SideBar />
       </SheetContent>
     </Sheet>
   )

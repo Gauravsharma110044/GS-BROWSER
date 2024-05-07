@@ -15,6 +15,7 @@ import * as z from 'zod'
 
 const FormSchema = z
   .object({
+    name: z.string().min(1, "Name is required!"),
     email: z.string().min(1, "Email is required!").email("Invalid email!"),
     password: z
       .string()
@@ -33,6 +34,7 @@ const page = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -48,6 +50,7 @@ const page = () => {
       body: JSON.stringify({
         email: values.email,
         password: values.password,
+        name: values.name
       }),
     });
 
@@ -70,10 +73,21 @@ const page = () => {
         <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
           <FormField 
             control={form.control}
+            name='name'
+            render={(({field}) => (
+              <FormItem>
+                <FormControl>
+                  <Input className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Your Name' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            ))}
+          />
+          <FormField 
+            control={form.control}
             name='email'
             render={(({field}) => (
               <FormItem>
-                <FormLabel>Your Email</FormLabel>
                 <FormControl>
                   <Input className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Email Address' {...field} />
                 </FormControl>
@@ -86,7 +100,6 @@ const page = () => {
             name='password'
             render={(({field}) => (
               <FormItem>
-                <FormLabel>Your Email</FormLabel>
                 <FormControl>
                   <Input className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Enter Password' type='password' {...field} />
                 </FormControl>
@@ -99,7 +112,6 @@ const page = () => {
             name='confirmPassword'
             render={(({field}) => (
               <FormItem>
-                <FormLabel>Your Email</FormLabel>
                 <FormControl>
                   <Input className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Re-enter Password' type='password' {...field} />
                 </FormControl>

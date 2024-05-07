@@ -53,9 +53,9 @@ const ChatRecommendation = ({chat}: ChatRecommendationProps) => {
       </div>
 
       <div className='grid grid-cols-2 gap-2 w-full mt-auto'>
-        {recommendations.map((recommendation) => {
+        {recommendations.map((recommendation, idx) => {
           return (
-            <button onClick={() => start(recommendation)} className='text-left pl-4 px-2 py-4 border-zinc-600 border rounded-xl hover:bg-zinc-700/30 transition'>
+            <button key={idx} onClick={() => start(recommendation)} className='text-left pl-4 px-2 py-4 border-zinc-600 border rounded-xl hover:bg-zinc-700/30 transition'>
               <p className='font-bold'>{recommendation.title}</p>
               <span className='text-sm text-gray-300'>{recommendation.sub}</span>
             </button>

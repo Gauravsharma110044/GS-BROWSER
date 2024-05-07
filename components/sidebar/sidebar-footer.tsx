@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import UserAvatar from '../user-avatar'
 import { User } from '@prisma/client'
@@ -20,13 +21,13 @@ const SideBarFooter = ({user}: {user: User}) => {
       <DropdownMenu>
         <DropdownMenuTrigger className="focus:outline-none" asChild>
           <button className='group p-2 rounded-md flex items-center gap-x-3 w-full hover:bg-zinc-700/30 transition'>
-            <UserAvatar className='md:h-10 md:w-10' name='chetan chauhan' />
-            <p className='text-sm'>chetan chauhan</p>
+            {user.name && (<UserAvatar className='md:h-10 md:w-10' name={user.name} />)}
+            <p className='text-sm'>{user.name}</p>
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className='text-xs font-medium space-y-[2px]'>
           <DropdownMenuItem className='px-3 p-2 text-sm cursor-pointer'>
-            chauhanchetan12789@gmail.com
+            {user.email}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem className='px-3 p-2 text-sm cursor-pointer'>

@@ -1,6 +1,7 @@
 import ChatContent from '@/components/chat/chat-content'
 import ChatHeader from '@/components/chat/chat-header'
 import ChatInput from '@/components/chat/chat-input'
+import ShareChatButton from '@/components/share-chat-button'
 import { currentUser } from '@/lib/current-user'
 import prisma from '@/lib/prisma'
 import { CircleHelp, Share } from 'lucide-react'
@@ -35,9 +36,7 @@ const page = async ({params}: {params: {chatId: string}}) => {
         <span className='flex justify-center mb-3 text-xs text-gray-300 text-center'>ChatGPT can make mistakes. Consider checking important information.</span>
       </div>
 
-      <button className='absolute top-3 right-3 px-2 py-2 border-zinc-600 border rounded-md hover:bg-zinc-700/30 transition'>
-        <Share className='h-5 w-5 text-gray-300' />
-      </button>
+      <ShareChatButton chat={chat} />
       <button className='absolute bottom-6 right-6'>
         <CircleHelp className='h-5 w-5 text-gray-300' />
       </button>

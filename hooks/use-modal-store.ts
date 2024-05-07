@@ -1,7 +1,7 @@
 import { Chat } from '@prisma/client'
 import {create} from 'zustand'
 
-export type ModalType = "deleteChat"
+export type ModalType = "deleteChat" | "shareChat"
 
 interface ModalData {
     chat?: Chat

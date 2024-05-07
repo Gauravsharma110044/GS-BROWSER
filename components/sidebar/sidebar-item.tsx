@@ -22,7 +22,7 @@ const SideBarItem = ({chat}: {chat: Chat}) => {
             <MoreHorizontal className='w-4 h-4 mr-2 text-gray-300 hover:text-white' />
           </DropdownMenuTrigger>
           <DropdownMenuContent className='text-xs font-medium space-y-[2px]'>
-            <DropdownMenuItem className='px-3 p-2 text-sm cursor-pointer'>
+            <DropdownMenuItem onClick={() => onOpen('shareChat', {chat})} className='px-3 p-2 text-sm cursor-pointer'>
               <Share className='flex-shrink-0 w-5 h-5 text-zinc-500 dark:text-zinc-400 mr-2'/> Share
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setIsEditing(true)} className='px-3 p-2 text-sm cursor-pointer'>

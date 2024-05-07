@@ -63,7 +63,7 @@ const page = () => {
     <div className='space-y-4'>
       <h3 className='font-bold text-3xl text-center'>Welcome Back</h3>
       <Form {...form}>
-        <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
+        <form className='space-y-5' onSubmit={form.handleSubmit(onSubmit)}>
           <FormField 
             control={form.control}
             name='email'

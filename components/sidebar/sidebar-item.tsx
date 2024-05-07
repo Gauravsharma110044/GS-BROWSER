@@ -1,19 +1,21 @@
 "use client"
 import { Chat } from '@prisma/client'
 import { Archive, MoreHorizontal, Pencil, Share, Trash } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import React, { useState } from 'react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { useModal } from '@/hooks/use-modal-store'
 import { SideBarItemEdit } from './sidebar-name-edit-form'
+import { cn } from '@/lib/utils'
 
 const SideBarItem = ({chat}: {chat: Chat}) => {
   const [isEditing, setIsEditing] = useState(false)
   const router = useRouter()
+  const params = useParams()
   const {onOpen} = useModal()
 
   return (
-    <button key={chat.id} onClick={() => router.push(`/${chat.id}`)} className='group p-2 rounded-md flex items-center gap-x-3 w-full hover:bg-zinc-700/30 transition'>
+    <button key={chat.id} onClick={() => router.push(`/${chat.id}`)} className={cn('group p-2 rounded-md flex items-center gap-x-3 w-full hover:bg-zinc-700/30 transition', params.chatId === chat.id && 'bg-zinc-700/30')}>
       {!isEditing && (<p className='text-sm'>{chat.name}</p>)}
       {isEditing && (<SideBarItemEdit chat={chat} setIsEditing={setIsEditing} />)}
       <div className='space-x-2 ml-auto flex'>

@@ -51,6 +51,7 @@ export async function POST(req: Request){
     
     const result = await MODEL.sendMessage(prompt);
     const reply = result.response.text()
+    console.log('reply', reply)
     const chat = await prisma.chat.update({
       where: {
         id: chatId as string,
@@ -73,7 +74,6 @@ export async function POST(req: Request){
         }
       }
     })
-
     return NextResponse.json(chat)
   } catch (error) {
     console.log(error)

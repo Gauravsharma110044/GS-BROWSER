@@ -38,7 +38,7 @@ export const ShareChatModal = () => {
         </DialogHeader>
         <div className="p-6">
           <div className="flex items-center mt-2 gap-x-2">
-            <Input className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0" value={publicUrl} />
+            <Input className="bg-white border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0" value={publicUrl} />
             <Button variant='green' size='icon' onClick={onCopy}>{copied ? (<Check />) : (<Copy />)}</Button>
           </div>
         </div>

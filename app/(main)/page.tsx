@@ -17,10 +17,13 @@ const page = async () => {
     }
   })
 
-  console.log(chats)
   if(chats.length === 0){
     console.log('creating new chat')
     const chat = await createNewChat()
+    if(!chat){
+      console.log('unable to create chat')
+      return null
+    }
     return redirect(`/${chat.id}`)
   }else{
     return redirect(`/${chats[0]?.id}`)

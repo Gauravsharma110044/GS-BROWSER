@@ -13,5 +13,8 @@ export const currentUser = async () => {
       id: session.user?.id
     }
   })
+  if(!user){
+    return null
+  }
   return user
 }

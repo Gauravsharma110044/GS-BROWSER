@@ -15,6 +15,7 @@ const ChatContent = ({chat}: ChatContentProps) => {
   return (
     <div className='flex flex-1 flex-col py-4 overflow-y-auto'>
       <div className='flex flex-col space-y-8'>
+        {chat.messages.length === 0 && (<p>No messages (chat start recommendations)</p>)}
         {chat.messages.map((message, idx) => {
           return(
             <div key={idx} className='flex space-x-3'>

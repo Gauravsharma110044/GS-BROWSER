@@ -33,10 +33,10 @@ const page = async ({params}: {params: {chatId: string}}) => {
   return (
     <div className='flex flex-col h-full'>
       <ChatHeader chats={chats} user={user} />
-      <div className='flex flex-1 overflow-y-auto container md:px-[14rem]'>
+      <div className='flex flex-1 overflow-y-auto container lg:px-[14rem]'>
         <ChatContent chat={chat} />
       </div>
-      <div className='container md:px-[12rem]'>
+      <div className='container lg:px-[12rem]'>
         <ChatInput chat={chat} />
         <span className='flex justify-center mb-3 text-xs text-gray-300 text-center'>ChatGPT can make mistakes. Consider checking important information.</span>
       </div>

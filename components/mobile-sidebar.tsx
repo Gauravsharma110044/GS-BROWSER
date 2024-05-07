@@ -13,7 +13,7 @@ const MobileSidebar = ({chats, user}: MobileSidebarProps) => {
   return (
     <Sheet>
       <SheetTrigger>
-        <button className='px-2 py-2 mr-2 rounded-md hover:bg-zinc-700/30 transition md:hidden'>
+        <button className='px-2 py-2 mr-2 rounded-md hover:bg-zinc-700/30 transition lg:hidden'>
           <Menu className='h-5 w-5 text-gray-300' />
         </button>
       </SheetTrigger>

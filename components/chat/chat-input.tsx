@@ -48,10 +48,10 @@ const ChatInput = ({chat}: ChatInputProps) => {
             <FormItem>
               <FormControl>
                 <div className='relative p-4 px-6'>
-                  <Input placeholder="Message ChatGPT" {...field} disabled={isLoading} className='px-4 py-6 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200' autoFocus />
-                  <div className='cursor-pointer hover:bg-zinc-700/10 absolute top-7 right-8'>
+                  <Input placeholder="Message ChatGPT" {...field} disabled={isLoading} className='px-6 py-7 bg-zinc-200/90 dark:bg-[#212121] border border-zinc-600 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-gray-300 rounded-xl' autoFocus />
+                  {/* <div className='cursor-pointer hover:bg-zinc-700/10 absolute top-7 right-8'>
                     <Send className='w-5 h-5 mr-2' />
-                  </div>
+                  </div> */}
                 </div>
               </FormControl>
             </FormItem>

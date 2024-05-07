@@ -34,6 +34,11 @@ export async function POST(req: Request){
         messages: true
       }
     })
+
+    if(existingChat?.name === 'New Chat'){
+      // update chat name
+    }
+
     const messages = existingChat?.messages || []
     const processedMessages = buildGoogleGenAIPrompt(messages)
 

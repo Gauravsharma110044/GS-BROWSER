@@ -1,10 +1,30 @@
 "use client"
 import React from 'react'
-import BotAvatar from '../bot-avatar'
 import { Chat, Message } from '@prisma/client'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.1,
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const item = {
+  hidden: { y: 10, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1
+  }
+};
 
 interface ChatRecommendationProps {
   chat: Chat & {
@@ -54,16 +74,16 @@ const ChatRecommendation = ({chat}: ChatRecommendationProps) => {
         <h2 className='text-2xl font-semibold'>How can I help you today?</h2>
       </div>
 
-      <div className='grid grid-cols-2 gap-2 w-full mt-auto'>
+      <motion.div animate="visible" initial="hidden" variants={container}  className='grid grid-cols-2 gap-2 w-full mt-auto'>
         {recommendations.map((recommendation, idx) => {
           return (
-            <button key={idx} onClick={() => start(recommendation)} className='text-left pl-4 px-2 py-4 border-zinc-600 border rounded-xl hover:bg-zinc-700/30 transition'>
+            <motion.button variants={item} key={idx} onClick={() => start(recommendation)} className='item text-left pl-4 px-2 py-4 border-zinc-600 border rounded-xl hover:bg-zinc-700/30 transition'>
               <p className='font-bold'>{recommendation.title}</p>
               <span className='text-sm text-gray-300'>{recommendation.sub}</span>
-            </button>
+            </motion.button>
           )
         })}
-      </div>
+      </motion.div>
     </div>
   )
 }

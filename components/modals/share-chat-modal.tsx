@@ -33,12 +33,12 @@ export const ShareChatModal = () => {
             <DialogTitle className="text-2xl text-left font-bold">Share Chat</DialogTitle>
             <Separator className="h-[1px] bg-gray-700 my-3" />
             <DialogDescription className="text-left text-zinc-300">
-              Here is the public url for your chat.
+              Here is the public link for your chat.
             </DialogDescription>
         </DialogHeader>
         <div className="p-6">
           <div className="flex items-center mt-2 gap-x-2">
-            <Input className="bg-white border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0" value={publicUrl} />
+            <Input className="bg-[#2f2f2f] text-white border border-zinc-600 focus-visible:ring-0 focus-visible:ring-offset-0" value={publicUrl} />
             <Button variant='green' size='icon' onClick={onCopy}>{copied ? (<Check />) : (<Copy />)}</Button>
           </div>
         </div>

@@ -33,10 +33,6 @@ export async function POST(req: Request){
       }
     })
 
-    if(existingChat?.name === 'New Chat'){
-      // update chat name
-    }
-
     const messages = existingChat?.messages || []
     const processedMessages = buildGoogleGenAIPrompt(messages)
 
@@ -49,6 +45,7 @@ export async function POST(req: Request){
     
     const result = await MODEL.sendMessage(prompt);
     const reply = result.response.text()
+    console.log('reply', reply)
     const chat = await prisma.chat.update({
       where: {
         id: chatId as string,
@@ -71,8 +68,32 @@ export async function POST(req: Request){
         }
       }
     })
+
+    if(existingChat?.name === 'New Chat'){
+      const NAME_MODEL = model.startChat({
+        generationConfig: {
+          maxOutputTokens: 100,
+        },
+      });
+
+      const result = await NAME_MODEL.sendMessage('suggest name for the conversation within 3 words ' + prompt + reply);
+      const suggestedName = result.response.text()
+      console.log('suggestedName', suggestedName)
+
+      const chat = await prisma.chat.update({
+        where: {
+          id: chatId as string,
+          userId: user.id
+        },
+        data: {
+          name: suggestedName
+        }
+      })
+    }
+
     return NextResponse.json(chat)
   } catch (error) {
-    return NextResponse.json({message: 'Error fetching chats'}, {status: 500})
+    console.log(error)
+    return NextResponse.json({message: 'Error chating'}, {status: 500})
   }
 }

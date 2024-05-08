@@ -33,7 +33,7 @@ const page = async ({params}: {params: {chatId: string}}) => {
   return (
     <div className='flex flex-col h-full'>
       <ChatHeader chats={chats} user={user} />
-      <div className='flex flex-1 overflow-y-auto container lg:px-[14rem]'>
+      <div className='flex flex-1 overflow-y-auto container no-scrollbar lg:px-[14rem]'>
         <ChatContent chat={chat} />
       </div>
       <div className='container lg:px-[12rem]'>

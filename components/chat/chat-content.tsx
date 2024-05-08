@@ -1,5 +1,6 @@
+"use client"
 import { Chat, Message } from '@prisma/client'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import UserAvatar from '../user-avatar'
 import BotAvatar from '../bot-avatar'
 import ChatRecommendation from './chat-recommendation'
@@ -11,6 +12,16 @@ interface ChatContentProps {
 }
 
 const ChatContent = ({chat}: ChatContentProps) => {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [chat.messages]);
+
   if(chat.messages.length === 0){
     return (<ChatRecommendation chat={chat} />)
   }
@@ -28,6 +39,7 @@ const ChatContent = ({chat}: ChatContentProps) => {
             </div>
           )
         })}
+        <div ref={messagesEndRef} />
       </div>
     </div>
   )

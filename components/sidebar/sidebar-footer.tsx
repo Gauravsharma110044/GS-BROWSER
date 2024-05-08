@@ -11,9 +11,9 @@ const SideBarFooter = ({user}: {user: User}) => {
   const {onOpen} = useModal()
   return (
     <div className='space-y-2'>
-      <button className='group p-2 rounded-md flex items-center gap-x-3 w-full hover:bg-zinc-700/30 transition'>
+      <button onClick={() => onOpen('pricing')} className='group p-2 rounded-md flex items-center gap-x-3 w-full hover:bg-zinc-700/30 transition'>
         <Sparkle />
-        <div onClick={() => onOpen('deleteChat')} className='flex flex-col items-start'>
+        <div className='flex flex-col items-start'>
           <p className='text-sm font-semibold'>Upgrade plan</p>
           <span className='text-xs text-gray-400'>Get GPT-4, DALL-E, and more</span>
         </div>

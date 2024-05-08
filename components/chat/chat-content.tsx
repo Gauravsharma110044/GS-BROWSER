@@ -15,7 +15,7 @@ const ChatContent = ({chat}: ChatContentProps) => {
     return (<ChatRecommendation chat={chat} />)
   }
   return (
-    <div className='flex flex-1 flex-col py-4 overflow-y-auto'>
+    <div className='flex flex-1 flex-col py-4 overflow-y-auto no-scrollbar'>
       <div className='flex flex-col space-y-8'>
         {chat.messages.map((message, idx) => {
           return(

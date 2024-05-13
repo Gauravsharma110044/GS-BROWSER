@@ -18,6 +18,9 @@ export async function POST(req: Request){
 export async function GET(req: Request){
     try {
         const user = await prisma.user.findMany()
+        if(process.env.NODE_ENV === "production"){
+            return NextResponse.json({'message': 'Restricted Access'})
+        }
         return NextResponse.json(user, {status: 201})
     } catch (error) {
         return NextResponse.json({message: 'Error creating user'}, {status: 500})

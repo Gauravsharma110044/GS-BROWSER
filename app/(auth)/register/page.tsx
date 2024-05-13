@@ -40,7 +40,7 @@ const page = () => {
       confirmPassword: "",
     },
   });
-
+  const isLoading = form.formState.isSubmitting
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     const response = await fetch("/api/auth/register", {
       method: "POST",
@@ -100,7 +100,7 @@ const page = () => {
             render={(({field}) => (
               <FormItem>
                 <FormControl>
-                  <Input className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Enter Password' type='password' {...field} />
+                  <Input disabled={isLoading} className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Enter Password' type='password' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -112,13 +112,13 @@ const page = () => {
             render={(({field}) => (
               <FormItem>
                 <FormControl>
-                  <Input className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Re-enter Password' type='password' {...field} />
+                  <Input disabled={isLoading} className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Re-enter Password' type='password' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             ))}
           />
-          <Button variant='green' type='submit' className='w-full'>Sign Up</Button>
+          <Button variant='green' type='submit' disabled={isLoading} className='w-full'>Sign Up</Button>
         </form>
       </Form>
       <div className='text-center'>

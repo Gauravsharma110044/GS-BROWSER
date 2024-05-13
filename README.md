@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!-- ABOUT THE PROJECT -->
+# ChatGPT clone
+![demo](image.png)
 
-## Getting Started
+This project is a ChatGPT clone website, designed to engage users in conversation.
+Users can efficiently manage their conversations, organizing and accessing past chats with ease.
 
-First, run the development server:
+Use the `README.md` to get started.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<!-- BUILT WITH -->
+# Built With
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The Tech Stacks used are:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<div align="center">
+  <a href="https://skillicons.dev">
+      <img src="https://skillicons.dev/icons?i=nextjs,prisma,mongodb" />
+  </a>
+</div>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Installation
 
-## Learn More
+1. Clone the repository to your local machine:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/Chetan3327/ChatGPT.git
+   ```
+2. Navigate to the directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd ChatGPT
+   ```
+3. Install dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   npm install
+   ```
+4. run the development server:
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<!-- CONTACT -->
+# Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<ul>
+   <li>Name: Chetan Chauhan</li>
+   <li>Mail: chauhanchetan12789@gmail.com</li>
+   <li>Linkedin: https://www.linkedin.com/in/chetan-chauhan-860106258/</li>
+   <li>Project Link: https://chatgpt3327.vercel.app/</li>
+</ul>

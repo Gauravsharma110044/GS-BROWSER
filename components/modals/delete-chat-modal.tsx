@@ -40,7 +40,7 @@ export const DeleteChatModal = () => {
         </DialogHeader>
         <DialogFooter className="px-6 py-4">
           <div className="flex items-leftext-left justify-between w-full">
-            <Button variant='ghost' disabled={isLoading} onClick={onClose}>Cancel</Button>
+            <Button variant='ghost' className="outline-none" disabled={isLoading} onClick={onClose}>Cancel</Button>
             <Button variant='destructive' disabled={isLoading} onClick={onDelete}>Confirm</Button>
           </div>
         </DialogFooter>

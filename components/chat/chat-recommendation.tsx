@@ -74,15 +74,42 @@ const ChatRecommendation = ({chat}: ChatRecommendationProps) => {
         <h2 className='text-2xl font-semibold'>How can I help you today?</h2>
       </div>
 
-      <motion.div animate="visible" initial="hidden" variants={container}  className='grid grid-cols-2 gap-2 w-full mt-auto'>
-        {recommendations.map((recommendation, idx) => {
-          return (
-            <motion.button variants={item} key={idx} onClick={() => start(recommendation)} className='item text-left pl-4 px-2 py-4 border-zinc-600 border rounded-xl hover:bg-zinc-700/30 transition'>
-              <p className='font-bold'>{recommendation.title}</p>
-              <span className='text-sm text-gray-300'>{recommendation.sub}</span>
-            </motion.button>
-          )
-        })}
+      <motion.div
+        animate="visible"
+        initial="hidden"
+        variants={container}
+        className='grid grid-cols-1 md:grid-cols-2 gap-2 w-full mt-auto md:hidden'
+      >
+        {recommendations.slice(0, 2).map((recommendation, idx) => (
+          <motion.button
+            variants={item}
+            key={idx}
+            onClick={() => start(recommendation)}
+            className='item text-left pl-4 px-2 py-4 border-zinc-600 border rounded-xl hover:bg-zinc-700/30 transition'
+          >
+            <p className='font-bold'>{recommendation.title}</p>
+            <span className='text-sm text-gray-300'>{recommendation.sub}</span>
+          </motion.button>
+        ))}
+      </motion.div>
+
+      <motion.div
+        animate="visible"
+        initial="hidden"
+        variants={container}
+        className='grid-cols-2 hidden md:grid gap-2 w-full mt-auto'
+      >
+        {recommendations.map((recommendation, idx) => (
+          <motion.button
+            variants={item}
+            key={idx}
+            onClick={() => start(recommendation)}
+            className='item text-left pl-4 px-2 py-4 border-zinc-600 border rounded-xl hover:bg-zinc-700/30 transition'
+          >
+            <p className='font-bold'>{recommendation.title}</p>
+            <span className='text-sm text-gray-300'>{recommendation.sub}</span>
+          </motion.button>
+        ))}
       </motion.div>
     </div>
   )

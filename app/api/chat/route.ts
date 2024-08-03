@@ -72,11 +72,11 @@ export async function POST(req: Request){
     if(existingChat?.name === 'New Chat'){
       const NAME_MODEL = model.startChat({
         generationConfig: {
-          maxOutputTokens: 100,
+          maxOutputTokens: 5,
         },
       });
 
-      const result = await NAME_MODEL.sendMessage('suggest name for the conversation within 3 words ' + prompt + reply);
+      const result = await NAME_MODEL.sendMessage('suggest name for the conversation within 3 words ' + prompt);
       const suggestedName = result.response.text()
       console.log('suggestedName', suggestedName)
 

@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react'
 import UserAvatar from '../user-avatar'
 import BotAvatar from '../bot-avatar'
 import ChatRecommendation from './chat-recommendation'
+import ReactMarkdown from 'react-markdown'
 
 interface ChatContentProps {
   chat: Chat & {
@@ -34,7 +35,7 @@ const ChatContent = ({chat}: ChatContentProps) => {
               {message.role === 'USER' ? (<UserAvatar name='chetan' />) : (<BotAvatar />)}
               <div className='mt-1'>
                 <span className='font-bold'>{message.role === 'USER' ? 'You' : 'ChatGPT'}</span>
-                <p>{message.content}</p>
+                <ReactMarkdown>{message.content}</ReactMarkdown>
               </div>
             </div>
           )

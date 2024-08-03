@@ -47,6 +47,6 @@ The Tech Stacks used are:
 <ul>
    <li>Name: Chetan Chauhan</li>
    <li>Mail: chauhanchetan12789@gmail.com</li>
-   <li>Linkedin: https://www.linkedin.com/in/chetan-chauhan-860106258/</li>
+   <li>Linkedin: https://www.linkedin.com/in/chetan3327/</li>
    <li>Project Link: https://chatgpt3327.vercel.app/</li>
 </ul>

@@ -10,14 +10,13 @@ Welcome to the GS Browser documentation! This guide will help you understand, in
    - [Quick Start Guide](#quick-start-guide)
 
 2. [Features](#features)
-   - [AI-Powered Features](#ai-powered-features)
    - [Browser Features](#browser-features)
    - [Security Features](#security-features)
 
 3. [User Guide](#user-guide)
    - [Basic Navigation](#basic-navigation)
-   - [AI Assistant Usage](#ai-assistant-usage)
-   - [File Management](#file-management)
+   - [Tab Management](#tab-management)
+   - [Bookmarks](#bookmarks)
    - [Settings and Customization](#settings-and-customization)
 
 4. [Development](#development)
@@ -44,23 +43,14 @@ Welcome to the GS Browser documentation! This guide will help you understand, in
 - Windows 10 or later
 - 4GB RAM minimum
 - 500MB free disk space
-- Internet connection for AI features
 
 ### Quick Start Guide
 
 1. Launch GS Browser
-2. Sign in with your account (optional)
-3. Start browsing with AI assistance
-4. Access features from the sidebar menu
+2. Start browsing
+3. Access features from the sidebar menu
 
 ## Features
-
-### AI-Powered Features
-
-- **AI Assistant**: Get help with writing, coding, and research
-- **Smart Search**: Enhanced search capabilities with AI understanding
-- **Content Generation**: Create and edit content with AI assistance
-- **Code Analysis**: Get insights and suggestions for your code
 
 ### Browser Features
 
@@ -69,6 +59,7 @@ Welcome to the GS Browser documentation! This guide will help you understand, in
 - **Bookmarks**: Smart bookmarking system
 - **History**: Advanced browsing history management
 - **Downloads**: Secure file download management
+- **Search**: Fast and efficient search capabilities
 
 ### Security Features
 
@@ -82,29 +73,30 @@ Welcome to the GS Browser documentation! This guide will help you understand, in
 ### Basic Navigation
 
 - Use the address bar for URLs and searches
-- Access AI features from the sidebar
+- Access features from the sidebar
 - Manage tabs and windows efficiently
 - Use keyboard shortcuts for quick actions
 
-### AI Assistant Usage
+### Tab Management
 
-1. Click the AI Assistant icon in the sidebar
-2. Choose your desired AI feature
-3. Enter your prompt or request
-4. Get AI-powered assistance
+- Open new tabs with Ctrl+T
+- Close tabs with Ctrl+W
+- Switch between tabs with Ctrl+Tab
+- Pin important tabs
+- Group related tabs
 
-### File Management
+### Bookmarks
 
-- Access files through the file manager
-- Use AI to organize and manage files
-- Share files securely
-- Backup important data
+- Add bookmarks with Ctrl+D
+- Organize bookmarks in folders
+- Access bookmarks from the sidebar
+- Import/export bookmarks
 
 ### Settings and Customization
 
 - Customize the browser appearance
-- Configure AI features
-- Set up security preferences
+- Configure privacy settings
+- Set up download preferences
 - Manage extensions and add-ons
 
 ## Development
@@ -139,8 +131,6 @@ Welcome to the GS Browser documentation! This guide will help you understand, in
 GS-BROWSER/
 ├── frontend/           # Frontend components
 ├── backend/           # Backend services
-├── ai_writer/         # AI writing features
-├── ai_assistant/      # AI assistant features
 └── docs/             # Documentation
 ```
 
@@ -149,19 +139,20 @@ GS-BROWSER/
 ### Common Issues
 
 - **Installation Problems**: Check system requirements and try running as administrator
-- **AI Features Not Working**: Verify internet connection and API access
 - **Performance Issues**: Check system resources and clear cache
+- **Browser Crashes**: Update to the latest version
 
 ### FAQ
 
 1. **Is GS Browser free to use?**
    - Yes, GS Browser is completely free and open-source
 
-2. **Do I need an account to use AI features?**
-   - No, but some advanced features may require an account
+2. **Can I use GS Browser offline?**
+   - Yes, you can view cached pages offline
 
-3. **Can I use GS Browser offline?**
-   - Basic browsing works offline, but AI features require internet
+3. **How do I update the browser?**
+   - Download the latest release from GitHub
+   - Run the installer to update
 
 ### Support
 

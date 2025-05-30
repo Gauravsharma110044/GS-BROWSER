@@ -82,3 +82,93 @@ python kivy_app.py
 - For best results, use an up-to-date Gemini API key and dependencies.
 - For mobile builds, see <https://kivy.org/doc/stable/guide/packaging.html>
 - For support, open an issue or contact <https://github.com/yourusername/gemini-ai-app>
+
+# GS Browser
+
+A modern, AI-powered browser available both as a desktop application and web interface.
+
+## Desktop Application
+
+### Features
+- AI-powered browsing experience
+- Voice commands
+- Smart tab management
+- Dark/Light mode
+- Enhanced security features
+- Cross-platform support (Windows)
+
+### Installation
+
+1. Download the latest release from our [Releases](https://github.com/Gauravsharma110044/GS-BROWSER/releases) page
+2. Run the installer
+3. Follow the installation instructions
+
+### Building from Source
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Gauravsharma110044/GS-BROWSER.git
+cd GS-BROWSER
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Build the application:
+```bash
+python build_app.py
+```
+
+The executable will be created in the `dist` directory.
+
+## Website
+
+Visit our [website](https://gsbrowser.vercel.app) to:
+- Learn about features
+- Download the latest version
+- Get support
+- View documentation
+
+### Features
+- Modern, responsive design
+- Interactive AI assistant
+- Voice command demo
+- Smart tab management preview
+- Dark/Light mode toggle
+
+### Development
+
+The website is built with:
+- HTML5
+- CSS3
+- JavaScript
+- Deployed on Vercel
+
+To run locally:
+1. Navigate to the website directory:
+```bash
+cd website
+```
+
+2. Open `index.html` in your browser
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For support, please:
+1. Check our [documentation](https://gsbrowser.vercel.app/docs)
+2. Open an issue on GitHub
+3. Contact us through our website
+
+## Credits
+
+Built with ❤️ by Gauravsharma110044

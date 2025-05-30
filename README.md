@@ -85,89 +85,81 @@ python kivy_app.py
 
 # GS Browser
 
-A modern, AI-powered browser available both as a desktop application and web interface.
+A modern, AI-powered web browser built with Python and Kivy.
 
-## Desktop Application
+## Features
 
-### Features
-- AI-powered browsing experience
-- Voice commands
-- Smart tab management
-- Dark/Light mode
-- Enhanced security features
-- Cross-platform support (Windows)
+- **AI-Powered Browsing**: Get intelligent assistance while browsing
+- **Modern Interface**: Clean and intuitive user interface
+- **Smart Search**: Enhanced search capabilities
+- **File Management**: Integrated file system access
+- **Security**: Built-in ad blocker and privacy features
 
-### Installation
+## Installation
 
-1. Download the latest release from our [Releases](https://github.com/Gauravsharma110044/GS-BROWSER/releases) page
-2. Run the installer
-3. Follow the installation instructions
+1. Download the latest release from [GitHub Releases](https://github.com/Gauravsharma110044/GS-BROWSER/releases)
+2. Extract the downloaded zip file
+3. Run `GS_Browser_Setup.exe`
+4. Follow the installation wizard
 
-### Building from Source
+## Development
+
+### Prerequisites
+
+- Python 3.8 or later
+- Git
+- Windows 10 or later
+
+### Setup
 
 1. Clone the repository:
-```bash
-git clone https://github.com/Gauravsharma110044/GS-BROWSER.git
-cd GS-BROWSER
-```
+   ```bash
+   git clone https://github.com/Gauravsharma110044/GS-BROWSER.git
+   ```
 
 2. Install dependencies:
-```bash
-pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run the application:
+   ```bash
+   python kivy_app.py
+   ```
+
+## Project Structure
+
+```
+GS-BROWSER/
+├── frontend/           # Frontend components
+├── backend/           # Backend services
+├── ai_writer/         # AI writing features
+├── ai_assistant/      # AI assistant features
+└── docs/             # Documentation
 ```
 
-3. Build the application:
-```bash
-python build_app.py
-```
+## Documentation
 
-The executable will be created in the `dist` directory.
-
-## Website
-
-Visit our [website](https://gsbrowser.vercel.app) to:
-- Learn about features
-- Download the latest version
-- Get support
-- View documentation
-
-### Features
-- Modern, responsive design
-- Interactive AI assistant
-- Voice command demo
-- Smart tab management preview
-- Dark/Light mode toggle
-
-### Development
-
-The website is built with:
-- HTML5
-- CSS3
-- JavaScript
-- Deployed on Vercel
-
-To run locally:
-1. Navigate to the website directory:
-```bash
-cd website
-```
-
-2. Open `index.html` in your browser
+1. Check our [documentation](https://github.com/Gauravsharma110044/GS-BROWSER/docs)
+2. Read the [installation guide](https://github.com/Gauravsharma110044/GS-BROWSER/docs/installation.md)
+3. Learn about [AI features](https://github.com/Gauravsharma110044/GS-BROWSER/docs/ai-features.md)
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## Support
+
+- [GitHub Issues](https://github.com/Gauravsharma110044/GS-BROWSER/issues)
+- [Documentation](https://github.com/Gauravsharma110044/GS-BROWSER/docs)
+- [Community Forum](https://github.com/Gauravsharma110044/GS-BROWSER/discussions)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Support
-
-For support, please:
-1. Check our [documentation](https://gsbrowser.vercel.app/docs)
-2. Open an issue on GitHub
-3. Contact us through our website
 
 ## Credits
 

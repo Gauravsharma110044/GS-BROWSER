@@ -141,7 +141,6 @@ GS-BROWSER/
 ├── backend/           # Backend services
 ├── ai_writer/         # AI writing features
 ├── ai_assistant/      # AI assistant features
-├── website/           # Website files
 └── docs/             # Documentation
 ```
 
@@ -172,4 +171,4 @@ GS-BROWSER/
 
 ---
 
-For more information, visit our [GitHub repository](https://github.com/Gauravsharma110044/GS-BROWSER) or [website](https://gsbrowser.vercel.app). 
+For more information, visit our [GitHub repository](https://github.com/Gauravsharma110044/GS-BROWSER). 

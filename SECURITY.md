@@ -4,8 +4,8 @@
 
 If you discover a security vulnerability in this project, please report it by opening a confidential issue on GitHub or by emailing the project maintainer.
 
-- **GitHub Issues:** https://github.com/yourusername/gemini-ai-app/issues
-- **Email:** [your.email@example.com]
+- **GitHub Issues:** https://github.com/Gauravsharma110044/gemini-ai-app/issues
+- **Email:** [gauravanshurenu@gmail.com]
 
 We will respond as quickly as possible and work to resolve the issue promptly.
 

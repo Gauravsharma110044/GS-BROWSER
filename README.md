@@ -81,7 +81,7 @@ python kivy_app.py
 - Your Gemini API key is kept private in `.env` and never shared.
 - For best results, use an up-to-date Gemini API key and dependencies.
 - For mobile builds, see <https://kivy.org/doc/stable/guide/packaging.html>
-- For support, open an issue or contact <https://github.com/yourusername/gemini-ai-app>
+- For support, open an issue or contact <https://github.com/Gauravsharma110044/gemini-ai-app>
 
 # GS Browser
 

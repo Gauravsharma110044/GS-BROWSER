@@ -1,57 +1,92 @@
-import kivy
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
-from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
-import google.generativeai as genai
+from kivy.uix.textinput import TextInput
+from kivy.uix.tabbedpanel import TabbedPanel, TabbedPanelItem
+from kivy.uix.webview import WebView
+from kivy.core.window import Window
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.label import Label
+from kivy.clock import Clock
 import os
-from dotenv import load_dotenv
 
-class GeminiChat(BoxLayout):
+class BrowserTab(TabbedPanelItem):
     def __init__(self, **kwargs):
-        super().__init__(orientation='vertical', **kwargs)
-        load_dotenv()
-        self.gemini_api_key = os.getenv("GEMINI_API_KEY")
-        if self.gemini_api_key:
-            genai.configure(api_key=self.gemini_api_key)
+        super().__init__(**kwargs)
+        self.layout = BoxLayout(orientation='vertical')
+        
+        # Navigation bar
+        self.nav_bar = BoxLayout(size_hint_y=None, height=40)
+        self.url_input = TextInput(
+            multiline=False,
+            size_hint_x=0.8,
+            hint_text='Enter URL or search term'
+        )
+        self.go_button = Button(
+            text='Go',
+            size_hint_x=0.1,
+            on_press=self.load_url
+        )
+        self.refresh_button = Button(
+            text='↻',
+            size_hint_x=0.1,
+            on_press=self.refresh_page
+        )
+        
+        self.nav_bar.add_widget(self.url_input)
+        self.nav_bar.add_widget(self.go_button)
+        self.nav_bar.add_widget(self.refresh_button)
+        
+        # Web view
+        self.webview = WebView()
+        
+        self.layout.add_widget(self.nav_bar)
+        self.layout.add_widget(self.webview)
+        self.add_widget(self.layout)
+        
+        # Bind enter key to load URL
+        self.url_input.bind(on_text_validate=self.load_url)
+        
+    def load_url(self, *args):
+        url = self.url_input.text
+        if not url.startswith(('http://', 'https://')):
+            url = 'https://' + url
+        self.webview.url = url
+        
+    def refresh_page(self, *args):
+        self.webview.reload()
 
-        self.label = Label(text='Gemini AI Chat', font_size='20sp', size_hint=(1, 0.1))
-        self.add_widget(self.label)
-
-        self.chat_history = Label(text='', size_hint=(1, 0.6), halign='left', valign='top')
-        self.chat_history.bind(size=self.chat_history.setter('text_size'))
-        self.add_widget(self.chat_history)
-
-        self.input_box = TextInput(hint_text='Type your message...', multiline=False, size_hint=(1, 0.1))
-        self.add_widget(self.input_box)
-
-        self.send_btn = Button(text='Send', size_hint=(1, 0.1))
-        self.send_btn.bind(on_press=self.send_message)
-        self.add_widget(self.send_btn)
-
-        self.history = []
-
-    def send_message(self, instance):
-        user_text = self.input_box.text.strip()
-        if not user_text:
-            return
-        self.history.append({'role': 'user', 'content': user_text})
-        self.chat_history.text += f"\nYou: {user_text}"
-        self.input_box.text = ''
-        try:
-            model = genai.GenerativeModel('gemini-pro')
-            convo = model.start_chat(history=[{"role": msg["role"], "parts": [msg["content"]]} for msg in self.history])
-            convo.send_message(user_text)
-            reply = convo.last.text.strip()
-            self.history.append({'role': 'assistant', 'content': reply})
-            self.chat_history.text += f"\nGemini: {reply}"
-        except Exception as e:
-            self.chat_history.text += f"\n[Error]: {e}"
-
-class GeminiKivyApp(App):
+class BrowserApp(App):
     def build(self):
-        return GeminiChat()
+        # Set window size
+        Window.size = (1024, 768)
+        
+        # Main layout
+        self.layout = BoxLayout(orientation='vertical')
+        
+        # Tab panel
+        self.tab_panel = TabbedPanel(do_default_tab=False)
+        
+        # Add first tab
+        self.add_new_tab()
+        
+        # Add tab button
+        self.new_tab_button = Button(
+            text='+',
+            size_hint_x=None,
+            width=50,
+            on_press=self.add_new_tab
+        )
+        
+        self.layout.add_widget(self.tab_panel)
+        self.layout.add_widget(self.new_tab_button)
+        
+        return self.layout
+    
+    def add_new_tab(self, *args):
+        tab = BrowserTab(text='New Tab')
+        self.tab_panel.add_widget(tab)
+        self.tab_panel.switch_to(tab)
 
 if __name__ == '__main__':
-    GeminiKivyApp().run()
+    BrowserApp().run()

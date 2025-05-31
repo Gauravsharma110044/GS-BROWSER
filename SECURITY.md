@@ -1,22 +1,42 @@
 # Security Policy
 
-## Reporting a Vulnerability
-
-If you discover a security vulnerability in this project, please report it by opening a confidential issue on GitHub or by emailing the project maintainer.
-
-- **GitHub Issues:** https://github.com/Gauravsharma110044/gemini-ai-app/issues
-- **Email:** [gauravanshurenu@gmail.com]
-
-We will respond as quickly as possible and work to resolve the issue promptly.
-
 ## Supported Versions
 
+We currently support the following versions of GS Browser:
+
 | Version | Supported          |
-| ------- | ----------------- |
-| latest  | :white_check_mark:|
+| ------- | ------------------ |
+| 1.0.x   | :white_check_mark: |
 
-Older versions may not receive security updates. Always use the latest release for best security.
+## Reporting a Vulnerability
 
-## Responsible Disclosure
+If you discover a security vulnerability within GS Browser, please send an email to gauravanshurenu@gmail.com. All security vulnerabilities will be promptly addressed.
 
-We encourage responsible disclosure. Please do not publicly disclose vulnerabilities without contacting us first so we can address them.
+Please include the following information in your report:
+- Type of vulnerability
+- Steps to reproduce
+- Potential impact
+- Any suggested fixes
+
+## Security Features
+
+GS Browser includes several security features:
+- SSL/TLS encryption
+- Safe browsing protection
+- Privacy controls
+- Cookie management
+- Permission controls
+- Regular security updates
+
+## Best Practices
+
+1. Always keep GS Browser updated to the latest version
+2. Enable automatic updates
+3. Use strong passwords for your Google account
+4. Enable two-factor authentication
+5. Regularly clear browsing data
+6. Use incognito mode for sensitive browsing
+
+## Updates
+
+Security updates are released regularly. Please ensure you're running the latest version of GS Browser to benefit from the most recent security improvements.

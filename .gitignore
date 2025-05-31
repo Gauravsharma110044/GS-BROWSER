@@ -47,3 +47,6 @@ Desktop.ini
 *.swp
 *.swo
 .idea/
+
+client_secret.json
+gs-browser-75739-firebase-adminsdk-fbsvc-dbd0e70ba0.json

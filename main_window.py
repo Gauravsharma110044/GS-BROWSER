@@ -707,6 +707,14 @@ class MainWindow(QMainWindow):
         # Apply ad blocker to the new tab
         browser.page().profile().setUrlRequestInterceptor(self.ad_blocker)
         
+        # Inject ad-blocking CSS for popular sites
+        def inject_cosmetic_script():
+            script = AdBlocker.get_cosmetic_script_for_url(browser.url().toString())
+            if script:
+                browser.page().scripts().insert(script)
+        browser.urlChanged.connect(lambda url: inject_cosmetic_script())
+        inject_cosmetic_script()
+        
         i = self.tabs.addTab(browser, "New Tab")
         self.tabs.setCurrentIndex(i)
         

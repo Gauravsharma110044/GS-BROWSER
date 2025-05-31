@@ -44,8 +44,8 @@ A modern web browser with Google integration, built with PyQt5.
    ```
 4. Install dependencies:
    ```bash
-   pip install -r requirements.txt
-   ```
+pip install -r requirements.txt
+```
 5. Run the browser:
    ```bash
    python gs_browser.py

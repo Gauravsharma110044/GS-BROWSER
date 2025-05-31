@@ -1,27 +1,29 @@
 @echo off
-echo Creating GS Browser Installer...
+echo Creating GS Browser installer...
 
-:: Create dist directory if it doesn't exist
-if not exist "dist" mkdir dist
+REM Create virtual environment if it doesn't exist
+if not exist venv (
+    python -m venv venv
+    call venv\Scripts\activate
+    pip install -r requirements.txt
+    pip install pyinstaller
+) else (
+    call venv\Scripts\activate
+)
 
-:: Copy necessary files
-echo Copying files...
-copy kivy_app.py dist\
-copy requirements.txt dist\
-copy run_browser.bat dist\
+REM Create the executable
+pyinstaller --name="GS Browser" ^
+            --windowed ^
+            --icon=icons/chrome.ico ^
+            --add-data "icons;icons" ^
+            --add-data "config;config" ^
+            --add-data "homepage.html;." ^
+            --add-data "*.qss;." ^
+            gs_browser.py
 
-:: Create a simple README
-echo Creating README...
-echo GS Browser > dist\README.txt
-echo ========== >> dist\README.txt
-echo. >> dist\README.txt
-echo Installation: >> dist\README.txt
-echo 1. Install Python 3.8 or higher >> dist\README.txt
-echo 2. Run: pip install -r requirements.txt >> dist\README.txt
-echo 3. Double-click run_browser.bat to start >> dist\README.txt
+REM Create installer
+iscc installer.nsi
 
-:: Create ZIP file
-echo Creating ZIP file...
-powershell Compress-Archive -Path dist\* -DestinationPath GS_Browser_Setup.zip -Force
-
-echo Done! Your installer is ready: GS_Browser_Setup.zip 
+echo Installation package created successfully!
+echo You can find the installer in the Output directory.
+pause 

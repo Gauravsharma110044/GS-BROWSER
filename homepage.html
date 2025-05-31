@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tab</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #202124;
+            color: #e8eaed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-container {
+            margin-top: 15vh;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 272px;
+            height: auto;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 16px;
+            border: 1px solid #5f6368;
+            border-radius: 24px;
+            background-color: #303134;
+            color: #e8eaed;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-box:hover, .search-box:focus {
+            background-color: #303134;
+            box-shadow: 0 1px 6px 0 #171717;
+            border-color: #8ab4f8;
+        }
+
+        .shortcuts-container {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 800px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .shortcut {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #e8eaed;
+            transition: transform 0.2s;
+        }
+
+        .shortcut:hover {
+            transform: scale(1.05);
+        }
+
+        .shortcut-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #303134;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .shortcut-icon img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .shortcut-name {
+            font-size: 13px;
+            text-align: center;
+            max-width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #e8eaed;
+            cursor: pointer;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <div class="logo">
+            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google">
+        </div>
+        <input type="text" class="search-box" placeholder="Search Google or enter a URL" autofocus>
+    </div>
+
+    <div class="shortcuts-container">
+        <!-- Popular websites shortcuts -->
+        <a href="https://www.youtube.com" class="shortcut">
+            <div class="shortcut-icon">
+                <img src="https://www.youtube.com/favicon.ico" alt="YouTube">
+            </div>
+            <div class="shortcut-name">YouTube</div>
+        </a>
+        <a href="https://www.gmail.com" class="shortcut">
+            <div class="shortcut-icon">
+                <img src="https://www.gmail.com/favicon.ico" alt="Gmail">
+            </div>
+            <div class="shortcut-name">Gmail</div>
+        </a>
+        <a href="https://www.google.com/maps" class="shortcut">
+            <div class="shortcut-icon">
+                <img src="https://www.google.com/maps/favicon.ico" alt="Maps">
+            </div>
+            <div class="shortcut-name">Maps</div>
+        </a>
+        <a href="https://drive.google.com" class="shortcut">
+            <div class="shortcut-icon">
+                <img src="https://drive.google.com/favicon.ico" alt="Drive">
+            </div>
+            <div class="shortcut-name">Drive</div>
+        </a>
+        <a href="https://www.google.com/calendar" class="shortcut">
+            <div class="shortcut-icon">
+                <img src="https://www.google.com/calendar/favicon.ico" alt="Calendar">
+            </div>
+            <div class="shortcut-name">Calendar</div>
+        </a>
+        <a href="https://www.google.com/meet" class="shortcut">
+            <div class="shortcut-icon">
+                <img src="https://www.google.com/meet/favicon.ico" alt="Meet">
+            </div>
+            <div class="shortcut-name">Meet</div>
+        </a>
+        <a href="https://www.google.com/chat" class="shortcut">
+            <div class="shortcut-icon">
+                <img src="https://www.google.com/chat/favicon.ico" alt="Chat">
+            </div>
+            <div class="shortcut-name">Chat</div>
+        </a>
+        <a href="https://www.google.com/contacts" class="shortcut">
+            <div class="shortcut-icon">
+                <img src="https://www.google.com/contacts/favicon.ico" alt="Contacts">
+            </div>
+            <div class="shortcut-name">Contacts</div>
+        </a>
+    </div>
+
+    <script>
+        // Handle search
+        document.querySelector('.search-box').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    // Check if it's a URL
+                    if (query.includes('.') && !query.includes(' ')) {
+                        // Add http:// if not present
+                        const url = query.startsWith('http') ? query : 'http://' + query;
+                        window.location.href = url;
+                    } else {
+                        // Search on Google
+                        window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

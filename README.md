@@ -1,83 +1,131 @@
 # GS Browser
 
-A modern web browser with Google integration, built with PyQt5.
+A modern web browser built with Python and PyQt5, featuring advanced ad-blocking capabilities.
 
 ## Features
 
-- Modern, clean interface
-- Google account integration
-- Tabbed browsing
-- Bookmarks and history
-- Developer tools
-- Extensions support
-- Dark/Light themes
-- Performance monitoring
-- Security features
+- **Advanced Ad-Blocking**
+  - Blocks ads on YouTube, Facebook, Twitter, and other popular sites
+  - Uses EasyList filters for comprehensive ad blocking
+  - CSS injection for hiding ad elements
+  - Blocks tracking scripts and malware domains
 
-## System Requirements
+- **Modern UI**
+  - Clean and intuitive interface
+  - Tab management
+  - Bookmarks
+  - History tracking
+  - Developer tools
 
-- Windows 10 or later
-- 4GB RAM minimum
-- 500MB free disk space
-- Internet connection
+- **Security Features**
+  - SSL/TLS support
+  - Privacy protection
+  - Safe browsing
 
 ## Installation
 
-### Option 1: Using the Installer (Recommended)
+### Windows
 
-1. Download `GS_Browser_Setup.exe` from the [releases page](https://github.com/Gauravsharma110044/gs-browser/releases)
-2. Run the installer as Administrator
-3. Follow the installation wizard
-4. Launch GS Browser from the desktop or start menu
+1. **Prerequisites**
+   - Python 3.9 or later
+   - Git (optional, for development)
 
-### Option 2: Manual Installation
+2. **Quick Install**
+   - Download the latest release
+   - Run `install_gs_browser.bat`
+   - Follow the on-screen instructions
 
-1. Install Python 3.7 or later
-2. Clone this repository:
+3. **Manual Install**
    ```bash
-   git clone https://github.com/Gauravsharma110044/gs-browser.git
-   ```
-3. Create a virtual environment:
-   ```bash
+   # Clone the repository
+   git clone https://github.com/Gauravsharma110044/GS-BROWSER.git
+   cd GS-BROWSER
+
+   # Create virtual environment
    python -m venv venv
    venv\Scripts\activate
+
+   # Install dependencies
+   pip install -r requirements.txt
+
+   # Run the browser
+   python gs_browser.py
    ```
-4. Install dependencies:
+
+### Linux
+
+1. **Prerequisites**
    ```bash
-pip install -r requirements.txt
-```
-5. Run the browser:
+   sudo apt-get update
+   sudo apt-get install python3-venv python3-pip
+   ```
+
+2. **Installation**
    ```bash
+   # Clone the repository
+   git clone https://github.com/Gauravsharma110044/GS-BROWSER.git
+   cd GS-BROWSER
+
+   # Create virtual environment
+   python3 -m venv venv
+   source venv/bin/activate
+
+   # Install dependencies
+   pip install -r requirements.txt
+
+   # Run the browser
    python gs_browser.py
    ```
 
 ## Usage
 
-- **New Tab**: Ctrl+T
-- **Close Tab**: Ctrl+W
-- **New Window**: Ctrl+N
-- **Incognito Window**: Ctrl+Shift+N
-- **Find**: Ctrl+F
-- **Zoom In/Out**: Ctrl++/Ctrl+-
-- **Reset Zoom**: Ctrl+0
-- **Developer Tools**: Ctrl+Shift+I
-- **JavaScript Console**: Ctrl+Shift+J
+1. **Starting the Browser**
+   - Double-click the desktop shortcut (Windows)
+   - Run `python gs_browser.py` from the command line
 
-## Security
+2. **Ad-Blocking**
+   - Works automatically on supported sites
+   - No configuration needed
 
-- SSL/TLS support
-- Safe browsing features
-- Privacy controls
-- Cookie management
-- Permission controls
+3. **Keyboard Shortcuts**
+   - `Ctrl+T`: New tab
+   - `Ctrl+W`: Close tab
+   - `Ctrl+N`: New window
+   - `Ctrl+Shift+N`: Incognito window
+   - `Ctrl+F`: Find text
+   - `Ctrl++`: Zoom in
+   - `Ctrl+-`: Zoom out
+   - `Ctrl+0`: Reset zoom
 
-## Support
+## Development
 
-For issues and feature requests, please use the [GitHub issue tracker](https://github.com/Gauravsharma110044/gs-browser/issues).
+1. **Running Tests**
+   ```bash
+   pytest tests/
+   ```
+
+2. **Code Style**
+   ```bash
+   black .
+   flake8
+   mypy .
+   ```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For issues and feature requests, please use the GitHub issue tracker.
 
 ## Project Structure
 
@@ -92,13 +140,6 @@ GS-BROWSER/
 
 1. Check our [documentation](https://github.com/Gauravsharma110044/gs-browser/docs)
 2. Read the [installation guide](https://github.com/Gauravsharma110044/gs-browser/docs/installation.md)
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
 
 ## Credits
 

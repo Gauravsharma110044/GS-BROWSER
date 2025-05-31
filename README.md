@@ -85,7 +85,10 @@ A modern web browser built with Python and PyQt5, featuring advanced ad-blocking
 
 2. **Ad-Blocking**
    - Works automatically on supported sites
-   - No configuration needed
+   - Toggle ad-blocking on/off using the shield icon in the toolbar
+   - Green shield: Ad-blocking enabled
+   - Gray shield: Ad-blocking disabled
+   - Changes apply to all open tabs
 
 3. **Keyboard Shortcuts**
    - `Ctrl+T`: New tab

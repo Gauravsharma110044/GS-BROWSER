@@ -31,6 +31,7 @@ class AdBlocker(QWebEngineUrlRequestInterceptor):
         super().__init__(parent)
         self.filters = []
         self.rules = None
+        self.enabled = True  # Default to enabled
         self.load_filters()
         
     def load_filters(self):
@@ -58,14 +59,29 @@ class AdBlocker(QWebEngineUrlRequestInterceptor):
     
     def interceptRequest(self, info):
         """Intercept and block ad requests using adblockparser."""
+        if not self.enabled:
+            return
+            
         url = info.requestUrl().toString()
         if self.rules and self.rules.should_block(url):
             info.block(True)
             return
     
+    def toggle(self):
+        """Toggle ad-blocking on/off."""
+        self.enabled = not self.enabled
+        return self.enabled
+    
+    def is_enabled(self):
+        """Check if ad-blocking is enabled."""
+        return self.enabled
+    
     @staticmethod
-    def get_cosmetic_script_for_url(url):
+    def get_cosmetic_script_for_url(url, enabled=True):
         """Return a QWebEngineScript to inject CSS for popular sites."""
+        if not enabled:
+            return None
+            
         for domain, css in POPULAR_SITE_CSS.items():
             if domain in url:
                 script = QWebEngineScript()

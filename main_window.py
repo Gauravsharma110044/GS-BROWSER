@@ -638,6 +638,14 @@ class MainWindow(QMainWindow):
         home_btn.triggered.connect(self.navigate_home)
         self.toolbar.addAction(home_btn)
 
+        # Add ad-block toggle button
+        self.adblock_btn = QAction(QIcon("icons/shield.png"), "Ad-Block", self)
+        self.adblock_btn.setStatusTip("Toggle ad-blocking")
+        self.adblock_btn.setCheckable(True)
+        self.adblock_btn.setChecked(True)  # Default to enabled
+        self.adblock_btn.triggered.connect(self.toggle_adblock)
+        self.toolbar.addAction(self.adblock_btn)
+
         # URL bar
         self.url_bar = QLineEdit()
         self.url_bar.returnPressed.connect(self.navigate_to_url)
@@ -704,16 +712,17 @@ class MainWindow(QMainWindow):
         browser = QWebEngineView()
         browser.setUrl(qurl)
         
-        # Apply ad blocker to the new tab
-        browser.page().profile().setUrlRequestInterceptor(self.ad_blocker)
-        
-        # Inject ad-blocking CSS for popular sites
-        def inject_cosmetic_script():
-            script = AdBlocker.get_cosmetic_script_for_url(browser.url().toString())
-            if script:
-                browser.page().scripts().insert(script)
-        browser.urlChanged.connect(lambda url: inject_cosmetic_script())
-        inject_cosmetic_script()
+        # Apply ad blocker to the new tab if enabled
+        if self.ad_blocker.is_enabled():
+            browser.page().profile().setUrlRequestInterceptor(self.ad_blocker)
+            
+            # Inject ad-blocking CSS for popular sites
+            def inject_cosmetic_script():
+                script = AdBlocker.get_cosmetic_script_for_url(browser.url().toString(), True)
+                if script:
+                    browser.page().scripts().insert(script)
+            browser.urlChanged.connect(lambda url: inject_cosmetic_script())
+            inject_cosmetic_script()
         
         i = self.tabs.addTab(browser, "New Tab")
         self.tabs.setCurrentIndex(i)
@@ -958,5 +967,28 @@ class MainWindow(QMainWindow):
                     auth.setPassword(password)
                     return True
         return False
+
+    def toggle_adblock(self):
+        """Toggle ad-blocking on/off."""
+        is_enabled = self.ad_blocker.toggle()
+        self.adblock_btn.setChecked(is_enabled)
+        
+        # Update all open tabs
+        for i in range(self.tabs.count()):
+            browser = self.tabs.widget(i)
+            if is_enabled:
+                # Re-enable ad blocking
+                browser.page().profile().setUrlRequestInterceptor(self.ad_blocker)
+                # Re-inject CSS
+                script = AdBlocker.get_cosmetic_script_for_url(browser.url().toString(), True)
+                if script:
+                    browser.page().scripts().insert(script)
+            else:
+                # Disable ad blocking
+                browser.page().profile().setUrlRequestInterceptor(None)
+                # Remove CSS
+                for script in browser.page().scripts().findScripts():
+                    if script.name().startswith("adblock_css_"):
+                        browser.page().scripts().remove(script)
 
     # ... (rest of the existing methods remain unchanged) 

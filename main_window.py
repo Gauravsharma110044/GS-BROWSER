@@ -27,6 +27,7 @@ import pickle
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import socketserver
+from adblock.adblock import AdBlocker
 
 class OAuthCallbackHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -600,6 +601,9 @@ class MainWindow(QMainWindow):
         self.setup_security()
         # Setup performance monitoring
         self.setup_performance_monitoring()
+        
+        # Initialize ad blocker
+        self.ad_blocker = AdBlocker(self)
 
     def setup_ui(self):
         # Set window properties
@@ -695,33 +699,24 @@ class MainWindow(QMainWindow):
 
     def add_new_tab(self, qurl=None):
         if qurl is None:
-            # Use the local homepage
-            qurl = QUrl.fromLocalFile(os.path.abspath("homepage.html"))
+            qurl = QUrl("https://www.google.com")
         
         browser = QWebEngineView()
         browser.setUrl(qurl)
         
-        # Connect signals
-        browser.urlChanged.connect(lambda qurl, browser=browser: 
-            self.update_urlbar(qurl, browser))
-        browser.loadFinished.connect(lambda _, i=self.tabs.count()-1, browser=browser:
-            self.tabs.setTabText(i, browser.page().title()))
-        browser.loadProgress.connect(self.update_progress)
+        # Apply ad blocker to the new tab
+        browser.page().profile().setUrlRequestInterceptor(self.ad_blocker)
         
-        # Add to tabs
         i = self.tabs.addTab(browser, "New Tab")
         self.tabs.setCurrentIndex(i)
         
-        # Add to history
-        browser.loadFinished.connect(lambda ok, url=browser.url().toString(), 
-            title=browser.page().title(): self.db.add_history(url, title))
+        browser.urlChanged.connect(lambda qurl, browser=browser: 
+            self.update_urlbar(qurl, browser))
         
-        # Inject extensions
-        for ext_id in self.extensions_manager.extensions:
-            self.extensions_manager.inject_extension(browser, ext_id)
+        browser.loadFinished.connect(lambda _, i=i, browser=browser:
+            self.tabs.setTabText(i, browser.page().title()))
         
-        # Setup security headers
-        browser.page().profile().setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+        return browser
 
     def close_tab(self, i):
         if self.tabs.count() < 2:

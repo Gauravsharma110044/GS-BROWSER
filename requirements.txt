@@ -12,3 +12,6 @@ pytest-cov>=4.0.0
 black>=22.0.0
 flake8>=4.0.0
 mypy>=0.950
+python-dotenv>=0.19.0
+cryptography>=3.4.0
+pillow>=8.0.0

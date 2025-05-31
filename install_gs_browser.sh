@@ -24,7 +24,13 @@ pip install -r requirements.txt
 
 # Create necessary directories
 echo "Creating directories..."
-mkdir -p adblock icons config tests
+mkdir -p adblock icons config tests extensions bookmarks history downloads cache screenshots
+
+# Create config files
+echo "Creating configuration files..."
+if [ ! -f config/settings.json ]; then
+    echo '{"theme": "light", "homepage": "homepage.html", "search_engine": "google"}' > config/settings.json
+fi
 
 # Create desktop shortcut
 echo "Creating desktop shortcut..."
@@ -42,7 +48,30 @@ EOL
 
 chmod +x ~/Desktop/GS\ Browser.desktop
 
+# Create application menu entry
+echo "Creating application menu entry..."
+mkdir -p ~/.local/share/applications
+cat > ~/.local/share/applications/gs-browser.desktop << EOL
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GS Browser
+Comment=Modern web browser with ad-blocking
+Exec=$(pwd)/venv/bin/python $(pwd)/gs_browser.py
+Icon=$(pwd)/icons/chrome.ico
+Terminal=false
+Categories=Network;WebBrowser;
+EOL
+
 echo "Installation complete!"
 echo "You can now run GS Browser by:"
 echo "1. Double-clicking the desktop shortcut"
-echo "2. Running 'python gs_browser.py' from the command line" 
+echo "2. Running 'python gs_browser.py' from the command line"
+echo
+echo "Features installed:"
+echo "- Advanced ad-blocking with toggle"
+echo "- Google account integration"
+echo "- Bookmarks and history sync"
+echo "- Developer tools"
+echo "- Extensions support"
+echo "- Security features" 

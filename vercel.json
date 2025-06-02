@@ -1,16 +1,7 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
+  "buildCommand": "next build",
+  "devCommand": "next dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "env": {
-    "NEXTAUTH_URL": "https://your-app-name.vercel.app",
-    "NEXTAUTH_SECRET": "your-nextauth-secret",
-    "GITHUB_ID": "Ov23liZkhOEoRVL3JQGA",
-    "GITHUB_SECRET": "dd4452af14a893e9337702892c1c7e95d19ed95e",
-    "GOOGLE_CLIENT_ID": "your-google-client-id",
-    "GOOGLE_CLIENT_SECRET": "your-google-client-secret",
-    "DATABASE_URL": "your-database-url"
-  }
-} 
+  "regions": ["iad1"]
+}

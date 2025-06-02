@@ -1,23 +1,17 @@
-import { currentUser } from '@/lib/current-user'
-import prisma from '@/lib/prisma'
-import { redirect } from 'next/navigation'
+'use client'
+
+import { Chat, User } from '@prisma/client'
 import { ScrollArea } from '../ui/scroll-area'
 import SideBarFooter from './sidebar-footer'
 import SideBarHeader from './sidebar-header'
 import SideBarItem from './sidebar-item'
 
-export const dynamic = 'force-dynamic'
+interface SideBarProps {
+  user: User
+  chats: Chat[]
+}
 
-const SideBar = async () => {
-  const user = await currentUser()
-  if(!user){
-    return redirect('/login')
-  }
-  const chats = await prisma.chat.findMany({
-    where: {
-      userId: user.id
-    }
-  })
+const SideBar = ({ user, chats }: SideBarProps) => {
   return (
     <div className='relative flex flex-col px-3 py-3 h-full text-primary w-full dark:bg-[#171717] bg-[#f2f3f5]'>
       <SideBarHeader />

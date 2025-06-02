@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { ChevronDown, Menu, MessageCircleDashed, Share, Sparkles, Zap } from 'lucide-react'

@@ -1,56 +1,45 @@
-import nextAuth, { AuthOptions } from "next-auth";
-import CredentialsProvider from 'next-auth/providers/credentials'
-import GithubProvider from 'next-auth/providers/github'
+import { NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-import prisma from "@/lib/prisma";
-import {PrismaAdapter} from '@next-auth/prisma-adapter'
+import GithubProvider from 'next-auth/providers/github'
+import { PrismaAdapter } from '@auth/prisma-adapter'
+import prisma from './prisma'
 
-export const authOptions:AuthOptions = {
+// Debug environment variables
+console.log('Auth Configuration Debug:');
+console.log('GITHUB_ID:', process.env.GITHUB_ID ? 'Set' : 'Not Set');
+console.log('GITHUB_SECRET:', process.env.GITHUB_SECRET ? 'Set' : 'Not Set');
+console.log('NEXTAUTH_URL:', process.env.NEXTAUTH_URL);
+console.log('NEXTAUTH_SECRET:', process.env.NEXTAUTH_SECRET ? 'Set' : 'Not Set');
+
+export const authOptions: NextAuthOptions = {
+  debug: true, // Enable debug mode
   adapter: PrismaAdapter(prisma),
   providers: [
-      GithubProvider({
-          clientId: process.env.GITHUB_CLIENT_ID!,
-          clientSecret: process.env.GITHUB_CLIENT_SECRET!
-      }),
-      GoogleProvider({
-          clientId: process.env.GOOGLE_CLIENT_ID!,
-          clientSecret: process.env.GOOGLE_CLIENT_SECRET!
-      }),
-      CredentialsProvider({
-          name: 'Credentials',
-          credentials: {
-              email: { label: "Email", type: "email", placeholder: "test@example.com" },
-              password: { label: "Password", type: "password" }
-          },
-          async authorize(credentials, req){
-              const user = prisma.user.findUnique({where: {email: credentials?.email, password: credentials?.password}})
-              if(user){
-                  return user
-              }else{
-                  return null
-              }
-          }
-      })    
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID || '',
+      clientSecret: process.env.GITHUB_SECRET || '',
+    }),
   ],
-  pages: {
-      signIn: '/login'
-  },
-  secret: process.env.NEXTAUTH_URL,
-  debug: process.env.NODE_ENV !== "production",
   session: {
-      strategy: 'jwt'
+    strategy: 'jwt',
+  },
+  pages: {
+    signIn: '/login',
   },
   callbacks: {
-      jwt({ token, account, user }) {
-        if (account) {
-          token.accessToken = account.access_token
-          token.id = user?.id
-        }
-        return token
-      },
-      session({ session, token }) {
-          session.user.id = token.id;
-          return session;
-        },
-    }
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.sub as string;
+      }
+      return session;
+    },
+    async signIn({ user, account, profile }) {
+      console.log('Sign In Debug:', { user, account, profile });
+      return true;
+    },
+  },
 }

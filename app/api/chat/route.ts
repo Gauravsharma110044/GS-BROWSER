@@ -1,99 +1,94 @@
-import prisma from "@/lib/prisma"
-import { NextResponse } from "next/server"
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import { currentUser } from "@/lib/current-user";
-import { Message } from "@prisma/client";
+import { NextResponse } from 'next/server'
+import { GoogleGenerativeAI } from '@google/generative-ai'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/authOptions'
+import prisma from '@/lib/prisma'
+import { Role } from '@prisma/client'
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
-const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+// Initialize Google Gemini
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '')
 
-const buildGoogleGenAIPrompt = (messages: Message[]) => ({
-  contents: messages
-    .map(message => ({
-      role: message.role === 'USER' ? 'user' : 'model',
-      parts: [{ text: message.content }],
-    })),
-});
-
-export async function POST(req: Request){
+export async function POST(req: Request) {
   try {
-    const user = await currentUser()
-    if(!user){
-      return new NextResponse('Unauthorized', {status: 401})
+    const { message } = await req.json()
+    const session = await getServerSession(authOptions)
+
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const {chatId, prompt} = await req.json()
-    const existingChat = await prisma.chat.findUnique({
-      where: {
-        id: chatId,
-        userId: user.id
-      },
-      include: {
-        messages: true
-      }
+    // Get the Gemini Pro model
+    const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
+
+    // Generate response
+    const result = await model.generateContent(message)
+    const response = await result.response
+    const text = response.text()
+
+    // Save the chat message to database
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email }
     })
 
-    const messages = existingChat?.messages || []
-    const processedMessages = buildGoogleGenAIPrompt(messages)
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    }
 
-    const MODEL = model.startChat({
-      history:processedMessages.contents,
-      generationConfig: {
-        maxOutputTokens: 100,
-      },
-    });
-    
-    const result = await MODEL.sendMessage(prompt);
-    const reply = result.response.text()
-    console.log('reply', reply)
-    const chat = await prisma.chat.update({
-      where: {
-        id: chatId as string,
-        userId: user.id
-      },
-      data: {
-        messages: {
-          createMany: {
-            data: [
-              {
-                role: 'USER',
-                content: prompt
-              },
-              {
-                role: 'MODEL',
-                content: reply
-              }
-            ]
-          }
-        }
-      }
+    // Create or get the latest chat
+    let chat = await prisma.chat.findFirst({
+      where: { userId: user.id },
+      orderBy: { createdAt: 'desc' }
     })
 
-    if(existingChat?.name === 'New Chat'){
-      const NAME_MODEL = model.startChat({
-        generationConfig: {
-          maxOutputTokens: 5,
-        },
-      });
-
-      const result = await NAME_MODEL.sendMessage('suggest name for the conversation within 3 words ' + prompt);
-      const suggestedName = result.response.text()
-      console.log('suggestedName', suggestedName)
-
-      const chat = await prisma.chat.update({
-        where: {
-          id: chatId as string,
-          userId: user.id
-        },
+    if (!chat) {
+      chat = await prisma.chat.create({
         data: {
-          name: suggestedName
+          name: 'New Chat',
+          userId: user.id
         }
       })
     }
 
-    return NextResponse.json(chat)
+    // Save the messages
+    await prisma.message.createMany({
+      data: [
+        {
+          content: message,
+          role: Role.USER,
+          chatId: chat.id
+        },
+        {
+          content: text,
+          role: Role.MODEL,
+          chatId: chat.id
+        }
+      ]
+    })
+
+    return NextResponse.json({ response: text })
   } catch (error) {
-    console.log(error)
-    return NextResponse.json({message: 'Error chating'}, {status: 500})
+    console.error('Error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
   }
+}
+
+// GET: Return all chats for the authenticated user
+export async function GET(req: Request) {
+  const session = await getServerSession(authOptions)
+  if (!session || !session.user?.email) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  const user = await prisma.user.findUnique({ where: { email: session.user.email } })
+  if (!user) {
+    return NextResponse.json({ error: 'User not found' }, { status: 404 })
+  }
+  const chats = await prisma.chat.findMany({
+    where: { userId: user.id },
+    orderBy: { createdAt: 'desc' },
+    select: { id: true, createdAt: true, updatedAt: true },
+  })
+  return NextResponse.json(chats)
 }

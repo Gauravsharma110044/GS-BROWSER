@@ -1,17 +1,11 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import { Input } from '../ui/input'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem } from '../ui/form'
-import { ArrowUp } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Send } from 'lucide-react'
 import { Chat, Message } from '@prisma/client'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-const FormSchema = z.object({
-  prompt: z.string().min(1)
-})
 
 interface ChatInputProps {
   chat: Chat & {
@@ -21,44 +15,38 @@ interface ChatInputProps {
 
 const ChatInput = ({chat}: ChatInputProps) => {
   const router = useRouter()
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      prompt: ""
-    }
-  })
-  const isLoading = form.formState.isSubmitting
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!message.trim() || loading) return
+
     try {
-      const response = await axios.post('/api/chat', {chatId: chat.id, prompt: values.prompt})
+      setLoading(true)
+      const response = await axios.post('/api/chat', {chatId: chat.id, prompt: message})
       router.refresh()
-      form.reset()
+      setMessage('')
     } catch (error) {
-      console.log(error)
+      console.error('Error sending message:', error)
+    } finally {
+      setLoading(false)
     }
   }
+
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name='prompt'
-          disabled={isLoading}
-          render={(({field}) => (
-            <FormItem>
-              <FormControl>
-                <div className='relative p-4 px-6'>
-                  <Input placeholder="Message ChatGPT" {...field} disabled={isLoading} className='px-6 py-7 bg-zinc-200/90 dark:bg-[#212121] border border-zinc-600 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-gray-100 rounded-xl' autoFocus />
-                  <button disabled={form.getValues('prompt') === ''} type='submit' className='cursor-pointer bg-white rounded-xl text-black p-2 absolute top-7 right-8'>
-                    <ArrowUp className='w-5 h-5' />
-                  </button>
-                </div>
-              </FormControl>
-            </FormItem>
-          ))}
-        />
-      </form>
-    </Form>
+    <form onSubmit={handleSubmit} className="flex items-center gap-2 p-4 border-t">
+      <Input
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Type your message..."
+        disabled={loading}
+        className="flex-1"
+      />
+      <Button type="submit" disabled={loading || !message.trim()}>
+        <Send className="h-4 w-4" />
+      </Button>
+    </form>
   )
 }
 

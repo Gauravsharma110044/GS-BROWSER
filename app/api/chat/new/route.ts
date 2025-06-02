@@ -1,6 +1,8 @@
 import { currentUser } from "@/lib/current-user"
 import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server"
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/authOptions"
 
 export async function POST(req: Request){
   try {
@@ -9,9 +11,17 @@ export async function POST(req: Request){
       return new NextResponse('Unauthorized', {status: 401})
     }
 
+    const session = await getServerSession(authOptions)
+
+    if (!session) {
+      return new NextResponse('Unauthorized', { status: 401 })
+    }
+
+    const { user: sessionUser } = session
+
     const chat = await prisma.chat.create({
       data: {
-        userId: user.id,
+        userId: sessionUser.id,
         name: 'New Chat'
       }
     })

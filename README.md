@@ -1,8 +1,8 @@
 <!-- ABOUT THE PROJECT -->
-# ChatGPT clone
+# GoogleGPT
 ![demo](image.png)
 
-This project is a ChatGPT clone website, designed to engage users in conversation.
+This project is a GoogleGPT clone website, designed to engage users in conversation.
 Users can efficiently manage their conversations, organizing and accessing past chats with ease.
 
 Use the `README.md` to get started.
@@ -47,6 +47,5 @@ The Tech Stacks used are:
 <ul>
    <li>Name: Chetan Chauhan</li>
    <li>Mail: chauhanchetan12789@gmail.com</li>
-   <li>Linkedin: https://www.linkedin.com/in/chetan3327/</li>
-   <li>Project Link: https://chatgpt3327.vercel.app/</li>
+   <li>Project Link: /</li>
 </ul>

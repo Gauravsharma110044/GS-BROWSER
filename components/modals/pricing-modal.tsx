@@ -77,15 +77,20 @@ export const PricingModal = () => {
         <div className="grid grid-cols-3 gap-5">
           {PLANS.map((plan, idx) => {
             return (
-              <div className="px-5">
+              <div className="px-5" key={idx}>
                 <h3 className="font-bold text-xl">{plan.name}</h3>
                 <p className="text-sm text-gray-300">{plan.price}</p>
                 <Button className={cn("w-full my-5", plan.name === 'Team' && 'bg-blue-600 hover:bg-blue-600/80', plan.name === 'Free' && 'bg-slate-600 hover:bg-slate-600/80')} variant={'green'} disabled={plan.name === 'Free'}>{plan.action}</Button>
                 <div className="text-sm">
                   <p className="my-2">{plan.description}</p>
                   <ul className="space-y-2">
-                    {plan.features.map((feature) => {
-                      return (<li className="flex space-x-3"><Check className="flex-shrink-0 w-4 h-4" /><span>{feature}</span></li>)
+                    {plan.features.map((feature, featureIdx) => {
+                      return (
+                        <li className="flex space-x-3" key={featureIdx}>
+                          <Check className="flex-shrink-0 w-4 h-4" />
+                          <span>{feature}</span>
+                        </li>
+                      )
                     })}
                   </ul>
                 </div>

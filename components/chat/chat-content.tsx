@@ -34,7 +34,7 @@ const ChatContent = ({chat}: ChatContentProps) => {
             <div key={idx} className='flex space-x-3'>
               {message.role === 'USER' ? (<UserAvatar name='chetan' />) : (<BotAvatar />)}
               <div className='mt-1'>
-                <span className='font-bold'>{message.role === 'USER' ? 'You' : 'ChatGPT'}</span>
+                <span className='font-bold'>{message.role === 'USER' ? 'You' : 'GoogleGPT'}</span>
                 <ReactMarkdown>{message.content}</ReactMarkdown>
               </div>
             </div>

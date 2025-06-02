@@ -17,7 +17,7 @@ const ChatHeader = ({chats, user}: ChatHeaderProps) => {
         <DropdownMenu>
           <DropdownMenuTrigger className="focus:outline-none" asChild>
             <button className='group p-2 px-4 rounded-md flex items-center gap-x-3 w-full hover:bg-zinc-700/30 transition'>
-              <p className='text-xl'><span className='font-bold'>ChatGPT </span><span className='text-gray-400'>3.5</span></p>
+              <p className='text-xl'><span className='font-bold'>GoogleGPT </span><span className='text-gray-400'>3.5</span></p>
               <ChevronDown className="text-gray-400 h-5 w-5" />
             </button>
           </DropdownMenuTrigger>

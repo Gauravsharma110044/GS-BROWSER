@@ -57,3 +57,30 @@ export async function PATCH(req:Request, {params}: {params: {chatId: string}}){
     return NextResponse.json({message: 'Error deleting chat'}, {status: 500})
   }  
 }
+
+export async function GET(req:Request, {params}: {params: {chatId: string}}) {
+  try {
+    const user = await currentUser()
+    if(!user){
+      return new NextResponse('Unauthorized', {status: 401})
+    }
+
+    if(!params.chatId){
+      return new NextResponse('chatId not provided', {status: 401})
+    }
+
+    const chat = await prisma.chat.findUnique({
+      where: { id: params.chatId },
+      include: { messages: true },
+    })
+
+    if (!chat) {
+      return new NextResponse('Chat not found', { status: 404 })
+    }
+
+    return NextResponse.json(chat)
+  } catch (error) {
+    console.log(error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Personal Tutor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Personal Tutor</h1>
+        <div class="subject-select">
+            <label for="subject">Subject:</label>
+            <select id="subject">
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Math">Math</option>
+            </select>
+        </div>
+        <div class="qa-section">
+            <textarea id="question" placeholder="Ask your question or enter a topic..."></textarea>
+            <button id="ask-btn">Ask AI</button>
+        </div>
+        <div id="answer" class="answer-box"></div>
+        <div class="quiz-section">
+            <button id="quiz-btn">Generate Quiz</button>
+            <div id="quiz"></div>
+        </div>
+        <div class="voice-section">
+            <button id="voice-input">🎤 Speak</button>
+            <button id="voice-output">🔊 Listen</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

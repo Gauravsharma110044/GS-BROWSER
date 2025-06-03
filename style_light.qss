@@ -1,0 +1,60 @@
+/* Modern Light Theme */
+QWidget {
+    background-color: #f7f7f7;
+    color: #232629;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+}
+QTextEdit, QLineEdit {
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    color: #232629;
+    padding: 6px;
+}
+QPushButton {
+    background-color: #3b7ddd;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #5596f6;
+}
+QTabWidget::pane {
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    margin: 8px;
+}
+QTabBar::tab {
+    background: #f7f7f7;
+    color: #232629;
+    border: 1px solid #bbb;
+    border-radius: 6px 6px 0 0;
+    padding: 10px 20px;
+    margin-right: 2px;
+}
+QTabBar::tab:selected {
+    background: #3b7ddd;
+    color: #fff;
+}
+QLabel {
+    font-size: 15px;
+}
+QScrollBar:vertical {
+    background: #f7f7f7;
+    width: 12px;
+    margin: 18px 0 18px 0;
+    border-radius: 6px;
+}
+QScrollBar::handle:vertical {
+    background: #bbb;
+    min-height: 20px;
+    border-radius: 6px;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}

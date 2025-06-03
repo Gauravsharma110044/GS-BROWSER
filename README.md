@@ -1,117 +1,90 @@
-# GS Browser
+<!-- ABOUT THE PROJECT -->
+# GoogleGPT
 
-A modern web browser built with Python and PyQt5, featuring advanced ad-blocking capabilities.
+A modern AI-powered search engine built with Next.js and TypeScript, featuring advanced AI capabilities.
 
 ## Features
 
-- **Advanced Ad-Blocking**
-  - Blocks ads on YouTube, Facebook, Twitter, and other popular sites
-  - Uses EasyList filters for comprehensive ad blocking
-  - CSS injection for hiding ad elements
-  - Blocks tracking scripts and malware domains
+- **AI-Powered Search**
+  - Advanced natural language processing
+  - Context-aware responses
+  - Real-time search results
+  - Multi-modal search (text, image, video)
 
 - **Modern UI**
   - Clean and intuitive interface
-  - Tab management
-  - Bookmarks
-  - History tracking
-  - Developer tools
+  - Responsive design
+  - Dark/Light mode
+  - Keyboard shortcuts
 
 - **Security Features**
-  - SSL/TLS support
-  - Privacy protection
-  - Safe browsing
+  - User authentication
+  - Secure API endpoints
+  - Rate limiting
+  - Data encryption
 
 ## Installation
 
-### Windows
-
 1. **Prerequisites**
-   - Python 3.9 or later
-   - Git (optional, for development)
-
-2. **Quick Install**
-   - Download the latest release
-   - Run `install_gs_browser.bat`
-   - Follow the on-screen instructions
-
-3. **Manual Install**
-   ```bash
-   # Clone the repository
-   git clone https://github.com/Gauravsharma110044/GS-BROWSER.git
-   cd GS-BROWSER
-
-   # Create virtual environment
-   python -m venv venv
-   venv\Scripts\activate
-
-   # Install dependencies
-   pip install -r requirements.txt
-
-   # Run the browser
-   python gs_browser.py
-   ```
-
-### Linux
-
-1. **Prerequisites**
-   ```bash
-   sudo apt-get update
-   sudo apt-get install python3-venv python3-pip
-   ```
+   - Node.js 18 or later
+   - npm or yarn
+   - Git
 
 2. **Installation**
    ```bash
    # Clone the repository
-   git clone https://github.com/Gauravsharma110044/GS-BROWSER.git
-   cd GS-BROWSER
-
-   # Create virtual environment
-   python3 -m venv venv
-   source venv/bin/activate
+   git clone https://github.com/yourusername/google-gpt.git
+   cd google-gpt
 
    # Install dependencies
-   pip install -r requirements.txt
+   npm install
+   # or
+   yarn install
 
-   # Run the browser
-   python gs_browser.py
+   # Set up environment variables
+   cp .env.example .env.local
+   ```
+
+3. **Development**
+   ```bash
+   # Run development server
+   npm run dev
+   # or
+   yarn dev
    ```
 
 ## Usage
 
-1. **Starting the Browser**
-   - Double-click the desktop shortcut (Windows)
-   - Run `python gs_browser.py` from the command line
+1. **Starting the Application**
+   - Run `npm run dev` or `yarn dev`
+   - Open `http://localhost:3000` in your browser
 
-2. **Ad-Blocking**
-   - Works automatically on supported sites
-   - Toggle ad-blocking on/off using the shield icon in the toolbar
-   - Green shield: Ad-blocking enabled
-   - Gray shield: Ad-blocking disabled
-   - Changes apply to all open tabs
+2. **Search Features**
+   - Type your query in the search bar
+   - Use voice input for hands-free searching
+   - Upload images for visual search
+   - Use filters to refine results
 
 3. **Keyboard Shortcuts**
-   - `Ctrl+T`: New tab
-   - `Ctrl+W`: Close tab
-   - `Ctrl+N`: New window
-   - `Ctrl+Shift+N`: Incognito window
-   - `Ctrl+F`: Find text
-   - `Ctrl++`: Zoom in
-   - `Ctrl+-`: Zoom out
-   - `Ctrl+0`: Reset zoom
+   - `Ctrl+K`: Focus search
+   - `Ctrl+Enter`: Submit search
+   - `Ctrl+D`: Toggle dark mode
+   - `Ctrl+/`: Show shortcuts
 
 ## Development
 
 1. **Running Tests**
    ```bash
-   pytest tests/
+   npm test
+   # or
+   yarn test
    ```
 
 2. **Code Style**
    ```bash
-   black .
-   flake8
-   mypy .
+   npm run lint
+   # or
+   yarn lint
    ```
 
 ## Contributing
@@ -133,17 +106,18 @@ For issues and feature requests, please use the GitHub issue tracker.
 ## Project Structure
 
 ```
-GS-BROWSER/
-├── frontend/           # Frontend components
-├── backend/           # Backend services
-└── docs/             # Documentation
+google-gpt/
+├── app/              # Next.js app directory
+├── components/       # React components
+├── lib/             # Utility functions
+└── public/          # Static assets
 ```
 
 ## Documentation
 
-1. Check our [documentation](https://github.com/Gauravsharma110044/gs-browser/docs)
-2. Read the [installation guide](https://github.com/Gauravsharma110044/gs-browser/docs/installation.md)
+1. Check our [documentation](https://github.com/yourusername/google-gpt/docs)
+2. Read the [API guide](https://github.com/yourusername/google-gpt/docs/api.md)
 
 ## Credits
 
-Built with ❤️ by [Gaurav Sharma](https://github.com/Gauravsharma110044)
+Built with ❤️ by [Your Name](https://github.com/yourusername)

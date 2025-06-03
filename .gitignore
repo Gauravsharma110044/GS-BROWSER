@@ -19,36 +19,6 @@ build/
 # production
 /build
 
-# Python
-__pycache__/
-*.py[cod]
-*.so
-*.egg
-*.egg-info/
-dist/
-build/
-.env
-.env.*
-.venv/
-
-# Flutter/Dart
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-ios/Flutter/Flutter.framework/
-android/app/debug/
-android/app/profile/
-android/app/release/
-
-# Node/Electron
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 # local env files
 .env*.local
 .env
@@ -75,7 +45,3 @@ Desktop.ini
 *.swp
 *.swo
 .idea/
-
-# Firebase
-client_secret.json
-gs-browser-75739-firebase-adminsdk-fbsvc-dbd0e70ba0.json
